@@ -1,0 +1,53 @@
+<link rel="stylesheet" type="text/css" href="./css/module.css">
+<div class="module" id="monitoring">
+	<script type="text/javascript">
+		var monitoringToggler = new ModuleToggler('monitoring');
+	</script>
+	<div class="module-header" onclick="monitoringToggler.toggle()">
+		<div class="row">
+			<div class="col-12">
+				<!-- <span style="width: 50px">a</span>
+				<span style="width: 800px; margin: 0px -50px;">Monitoring</span>
+				<span style="width: 50px">b</span> -->
+				<div style="display: inline-block; width: 30px; margin: 0px;">a</div><!-- 
+			 --><div style="display: inline-block; width: 100%; margin: 0px -30px;">Monitoring</div><!-- 
+			 --><div style="display: inline-block; width: 30px; min-width: 30px; margin: 0px;">
+				 	<img src="https://png.icons8.com/metro/1600/settings.png" height="30px" width="30px">
+		 		</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-content"> 
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md-9">
+				<div class="block-header">
+					Generation and consumption
+				</div>
+				<div class="block-content">
+					<canvas id="generationAndConsumption" width="1000px" height="350px">Error</canvas>
+				</div>
+			</div>
+			<div class="col-md-3"> <!-- style="background-color: rgb(55, 55, 55);" -->
+				<div class="block-header">Information</div>
+				<div class="block-content" style="font-size: 0px;">
+					<div class="info">
+						<div class="label">Deficiency:</div><div class="value" id="deficiency">0.0</div>
+					</div>
+					<div class="info">
+						<div class="label">Total costs:</div><div class="value" id="wholeExpenses">0.0</div>
+					</div>
+					<div class="info">
+						<div class="label">Your costs:</div><div class="value" id="ownExpenses">0.0</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info 1:</div><div class="value" id="qwerty">235.2</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info 2:</div><div class="value" id="zxcvbn">1.22525</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/monitoring.js"></script>

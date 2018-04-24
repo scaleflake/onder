@@ -1,0 +1,189 @@
+<link rel="stylesheet" type="text/css" href="./css/module.css">
+<div class="module" id="responding">
+	<script type="text/javascript">
+		var respondingHidden = false;
+		var respondingModule = document.getElementById('responding');
+		function toggleResponding() {
+			if (respondingHidden) {
+				respondingModule.classList.remove('hidden');
+				respondingHidden = false; 
+			} else {
+				respondingModule.classList.add('hidden');
+				respondingHidden = true; 
+			}
+		}
+	</script>
+	<div class="module-header" onclick="toggleResponding()">
+		<div class="row">
+			<div class="col-12">
+				<span>Responding</span>
+			</div>
+		</div>
+	</div>
+	<div class="module-content">
+		<style type="text/css">
+			div.orders-toggler {
+				padding-bottom: 5px;
+				padding-top: 15px;
+			}
+			div.toggler-button {
+				background-color: var(--slider-track);
+				border-radius: 50vh;
+				cursor: pointer;
+				margin: 0 auto;
+				max-width: 200px;
+				overflow: hidden;
+				padding-bottom: 5px;
+				padding-left: 5vw;
+				padding-right: 5vw;
+				padding-top: 5px;
+				text-align: center;
+			}
+			div.toggler-button:hover {
+				background-color: var(--main-bg-color);
+			}
+			div.toggler-button.active {
+				background-color: var(--accent-dark);
+			}
+		</style>
+		<div class="row orders-toggler">
+			<div class="col-4"><div class="toggler-button active" id="orders-open">Open</div></div>
+			<div class="col-4"><div class="toggler-button" id="orders-active">Active</div></div>
+			<div class="col-4"><div class="toggler-button" id="orders-closed">Closed</div></div>
+		</div>
+		<style type="text/css">
+			div.scrollmenu {
+				overflow: auto;
+				white-space: nowrap;
+			}
+			div.scrollmenu div.item {
+				cursor: pointer;
+				display: block;
+				font-size: 0px;
+				padding: 15px 10px;
+				text-decoration: none;
+				transition: 0.2s;
+				vertical-align: top;
+				white-space: normal;
+			}
+			div.scrollmenu div.item:hover {
+				background-color: var(--modules-header-color);
+			}
+
+			div.item div {
+				display: inline-block;
+				font-size: 16px;
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+				vertical-align: top;
+			}
+			div.item .id, .state{
+				width: 5%;
+			}
+			div.item .time, .price{
+				width: 15%;
+			}
+			div.item .duration {
+				width: 10%;
+			}
+			div.item .watts {
+				width: 35%;
+			}
+
+			div.watts .total, .covered{
+				font-size: 13px !important;
+				text-align: center;
+				width: 20%;
+			}
+
+			div.progress-bar {
+				background-color: var(--accent-light); 
+				border-radius: 50vh; 
+				overflow: hidden;
+				text-align: left !important; 
+				width: 60%; 
+			}
+			div.progress {
+				border-radius: 0px;
+				background-color: var(--accent-dark); 
+				color: white; 
+				height: 24px; 
+				padding-right: 6px !important;
+				text-align: right;
+			}
+		</style>		
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-12">	
+				<div class="scrollmenu">
+					<div style="min-width: calc(1024px - 15px - 15px); height: 100%">
+						<div class="item">
+							<div class="id">Id</div>
+							<div class="time">Beginning</div>
+							<div class="time">Ending</div>
+							<div class="duration">Duration</div>
+							<div class="watts"><div style="width: 45%; text-align: right">Watts covered</div><div style="width: 10%; text-align: center;">|</div><div style="width: 45%; text-align: left;">Watts required</div></div>
+							<div class="price">Unit price</div>
+							<div class="state">State</div>
+						</div>
+						<div class="item">
+							<div class="id">#215</div>
+							<div class="time">21.05.2018 16:00</div>
+							<div class="time">21.05.2018 20:00</div>
+							<div class="duration">4 hours</div>
+							<div class="watts">
+								<div class="total">82 kW</div><div class="progress-bar"><div class="progress" style="width: 63%">63%</div></div><div class="covered">130 kW</div>
+							</div>
+							<div class="price">180 gwei/kW</div>
+							<div class="state">open</div>
+						</div>
+						<div class="item">
+							<div class="id">#221</div>
+							<div class="time">22.05.2018 16:00</div>
+							<div class="time">22.05.2018 20:00</div>
+							<div class="duration">4 hours</div>
+							<div class="watts">
+								<div class="total">56 kW</div><div class="progress-bar"><div class="progress" style="width: 56%">56%</div></div><div class="covered">100 kW</div>
+							</div>
+							<div class="price">180 gwei/kW</div>
+							<div class="state">open</div>
+						</div>
+						<div class="item">
+							<div class="id">#232</div>
+							<div class="time">24.05.2018 12:00</div>
+							<div class="time">24.05.2018 14:00</div>
+							<div class="duration">2 hours</div>
+							<div class="watts">
+								<div class="total">52 kW</div><div class="progress-bar"><div class="progress" style="width: 65%">65%</div></div><div class="covered">80 kW</div>
+							</div>
+							<div class="price">185 gwei/kW</div>
+							<div class="state">open</div>
+						</div>
+						<div class="item">
+							<div class="id">#235</div>
+							<div class="time">25.05.2018 13:00</div>
+							<div class="time">25.05.2018 14:00</div>
+							<div class="duration">2 hours</div>
+							<div class="watts">
+								<div class="total">70 kW</div><div class="progress-bar"><div class="progress" style="width: 100%">100%</div></div><div class="covered">70 kW</div>
+							</div>
+							<div class="price">200 gwei/kW</div>
+							<div class="state">open</div>
+						</div>
+						<div class="item">
+							<div class="id">#249</div>
+							<div class="time">26.05.2018 00:00</div>
+							<div class="time">28.05.2018 00:00</div>
+							<div class="duration">48 hours</div>
+							<div class="watts">
+								<div class="total">50 kW</div><div class="progress-bar"><div class="progress" style="width: 25%">25%</div></div><div class="covered">200 kW</div>
+							</div>
+							<div class="price">175 gwei/kW</div>
+							<div class="state">open</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

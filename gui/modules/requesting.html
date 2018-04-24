@@ -1,0 +1,99 @@
+<link rel="stylesheet" type="text/css" href="./css/module.css">
+<div class="module" id="requesting">
+	<script type="text/javascript">
+		var requestingToggler = new ModuleToggler('requesting');
+	</script>
+	<div class="module-header" onclick="requestingToggler.toggle()">
+		<div class="row">
+			<div class="col-12">
+				<span>Requesting</span>
+			</div>
+		</div>
+	</div>
+	<div class="module-content" >
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md-8">
+				<div class="block-header">
+					History
+				</div>
+				<div class="block-content" style="height: calc(100% - 57px)">
+					<div class="scrollmenu" id="requesting-orders"></div>
+					<script type="text/javascript">
+						horizontalScroll('requesting-orders');
+					</script>
+				</div>
+			</div>
+			<div class="col-md-4" id="history">
+				<div class="block-header">
+					Create order
+				</div>
+				<div class="block-content" style="overflow-x: hidden; overflow-y: hidden; white-space: nowrap;">
+					<style type="text/css">
+						div#create-order-input,div#create-order-confirmation {
+							display: inline-block !important; 
+							width: 100%;
+							transition: 0.3s;
+							transition-timing-function: ease-in-out;
+							overflow: hidden;
+							padding: 0px;
+
+							vertical-align: top;
+						}
+						div#create-order-input {
+							margin-left: 0%;
+						}
+						div#history button {
+							width: 100%;
+						}
+					</style>
+					<div id="create-order-input">
+						<div class="form-group">
+							<label>Beginning: </label>
+							<input class="form-control" id="begin" type = "text" placeholder = "2018-01-01 10:00">
+						</div>
+						<div class="form-group">
+							<label>Ending: </label>
+							<input class="form-control" id="end" type = "text" placeholder = "2018-12-31 22:00">
+						</div>
+						<div class="form-group">
+							<label>Watts: </label>
+							<div id="energy-div" style = "display: inline-block; font-size: 16px; padding-left: 20px">
+								500
+							</div>
+							<input id="energy" type="range" max="2000" min="0" value="500" style="display: block;">
+						</div>
+						<div class="form-group">
+							<label>Flat price: </label>
+							<input class="form-control" id = 'price'  type = "number" placeholder = "10">
+						</div>
+						<button id="request-button" class="btn btn-secondary">Create order</button>
+					</div><div id="create-order-confirmation">
+						<div class="form-group">
+							<label>Beginning: </label>
+							<div>2018-01-01 10:00</div>
+						</div>
+						<div class="form-group">
+							<label>Ending: </label>
+							<div>2018-01-01 10:00</div>
+						</div>
+						<div class="form-group">
+							<label>Watts: </label>
+							<div>500</div>
+						</div>
+						<div class="form-group">
+							<label>Price: </label>
+							<div>10</div>
+						</div>
+						<div style="display: inline-block; width: 50%; padding-left: 5px;">
+							<button id="confirm-button" class="btn btn-danger">Confirm</button>
+						</div><!-- 
+					 --><div style="display: inline-block; width: 50%; padding-left: 5px;">
+							<button id="notsure-button" class="btn btn-success">Not sure</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/requesting.js"></script>

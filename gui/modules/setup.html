@@ -1,0 +1,62 @@
+<div id="setup" style="display: none; position: fixed; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 3">
+	<div class="module" style="vertical-align: center; /*margin-top: 10vh;*/ background-colro: white;">
+		<div class="row">
+			<div class="col-md-6" style="margin: 0px auto;">
+				<div class="block_header" style="padding: 0px 0px 10px 0px;">
+					Setup
+				</div>
+				<div class="block_content">
+					<div class="form-group">
+						<label>Your ethereum address: </label>
+						<div id = "ethaddress" style = "font-size: 16px; overflow: hidden;">0x0123456789abcdef0123456789abcdef01234567</div>
+					</div>
+					<div class="form-group">
+						<label>Sensors count in whole ØNDER network: </label>
+						<div id = "networkcount" style = "font-size: 16px;">6</div>
+					</div>
+					<div class="form-group">
+						<label>Sensor ID: </label>
+						<input id = "sensorid" class = "form-control" type = "text" placeholder = "0 - 6">
+					</div>
+					<div class="form-group">
+						<label>Sensor subnetwork: </label>
+						<div id = "subnetwork" style = "font-size: 16px;"></div>
+					</div>
+					<div class="form-group">
+						<label>Sensors count in alpha subnetwork: </label>
+						<div id = "subnetworkcount" style = "font-size: 16px;"></div>
+					</div>
+					<button id="done" class="btn btn-success">Done</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var sensorid = document.getElementById('sensorid');
+		var subnetwork = document.getElementById('subnetwork');
+		var subnetworkcount = document.getElementById('subnetworkcount');
+		var dine = document.getElementById('done');
+
+		sensorid.addEventListener('input', function() {
+			if (sensorid.value == undefined || sensorid.value == "") {
+				subnetwork.innerHTML = '<font style = "color: red;"> </font>';
+				subnetworkcount.innerHTML = ' ';
+			} else {
+				subnetwork.innerHTML = '<font style = "color: red;">alpha</font>';
+				subnetworkcount.innerHTML = '6';
+			}
+		});
+
+		done.addEventListener('click', function() {
+			var id = sensorid.value;
+			if (id == undefined || id == '') {
+				console.error('Uncorrect ID')
+			} else {
+				setCookie('sensorid', String(id));
+				document.getElementById('setup').style.display = 'none';
+				checkComponents();
+			}
+			console.log(document.cookie);
+		});
+	</script>
+</div>

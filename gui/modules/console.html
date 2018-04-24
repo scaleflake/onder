@@ -1,0 +1,21 @@
+<div class = "module" style="margin-bottom: 0px;">
+	<style type="text/css">
+		#console {
+			padding: 10px;
+			margin-bottom: 0px;
+			font-family: monospace; 
+			font-size: 10px; 
+			white-space: pre-wrap;
+		}
+	</style>
+	<div class="row">
+		<div class="col-md-12" id="console" style="font-family: monospace; font-size: 10px; white-space: pre-wrap;">© Copyright - 2019 - ØNDER - All rights reserved
+		</div>
+	</div>
+	<script type="text/javascript">
+		var printer = document.getElementById('console');
+		function writeLine(string) {
+		    printer.innerHTML += JSON.stringify(string, null, 4) + '\n';
+		}
+	</script>
+</div>	

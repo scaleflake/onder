@@ -1,0 +1,32 @@
+<link rel="stylesheet" type="text/css" href="./css/module.css">
+<div class="module" id="compact">
+	<script type="text/javascript">
+		var compactToggler = new ModuleToggler('compact');
+	</script>
+	<div class="module-header" onclick="compactToggler.toggle()">
+		<div class="row">
+			<div class="col-12">
+				<span>Compact [dev]</span>
+			</div>
+		</div>
+	</div>
+	<div class="module-content">
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md-6">
+				<div class="block-header">Information</div>
+				<div class="block-content" style = " font-size: 0px;">
+					...
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="block-header">
+					Graphics
+				</div>
+				<div class="block-content">
+					<canvas id="compact" width="1000px" height="350px">Error</canvas>	
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/compact.js"></script>

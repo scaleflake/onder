@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="./css/module.css">
+<div class="module" id="statistics">
+	<script type="text/javascript">
+		var statisticsToggler = new ModuleToggler('statistics');
+	</script>
+	<div class="module-header" onclick="statisticsToggler.toggle()">
+		<div class="row">
+			<div class="col-12">
+				<span>Statistics</span>
+			</div>
+		</div>
+	</div>
+	<div class="module-content">
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-md-3"> <!-- style="background-color: rgb(55, 55, 55);" -->
+				<div class="block-header">Information</div>
+				<div class="block-content" style = " font-size: 0px;">
+					<div class="info">
+						<div class="label">Some info A: </div><div class="value" id = "a1">0.8123</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info B: </div><div class="value" id = "a2">92314</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info C: </div><div class="value" id = "a3">-0.1</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info D: </div><div class="value" id = "a4">235.2</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info E: </div><div class="value" id = "a5">1.22525</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="block-header">
+					Hourly profiles
+				</div>
+				<div class="block-content">
+					<canvas id="dayProfile" width="1000px" height="350px">Error</canvas> <!--  -->		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/statistics.js"></script>

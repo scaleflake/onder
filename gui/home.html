@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ONDER</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		
+		<!-- <script src="dist./web3.min.js" crossorigin="anonymous"></script> -->
+		
+		<script src="./../database/contract.js"></script>
+		<script src="./js/libs/cookie.js"></script>
+		<script src="./js/charts.js"></script>
+		<script src="./js/orders.js"></script>
+	</head>
+	<body class="" id="body">
+		<script type="text/javascript">
+			var theme = getCookie('theme');
+			if (theme == undefined) {
+				console.log('aaaaa');
+				setCookie('theme', 'dark');
+				theme = 'dark';
+			}
+			console.log('Current theme: ' + theme);
+
+			var body = document.getElementById('body').classList;
+			if (theme == 'light') { 
+				body.add('light');
+			} else if (theme == 'dark') { 
+				body.add('dark'); 
+			}
+		</script>
+		<div id="setup-placeholder"></div>
+		<script>
+			$(function(){
+				$("#setup-placeholder").load("./modules/setup.html");
+			});
+		</script>
+
+		<script src="./js/default.js"></script>
+
+		<div id = "navbar-placeholder"></div>
+		<script>
+			$(function(){
+				$("#navbar-placeholder").load("./modules/navbar.html");
+			});
+		</script>
+
+		<div id="monitoring-placeholder"></div>
+		<script>
+			$(function(){
+				$("#monitoring-placeholder").load("./modules/monitoring.html");
+			});
+		</script>
+
+		<div id="statistics-placeholder"></div>
+		<script>
+			$(function(){
+				$("#statistics-placeholder").load("./modules/statistics.html");
+			});
+		</script>
+
+		<div id="requesting-placeholder"></div>
+		<script>
+			$(function(){
+				$("#requesting-placeholder").load("./modules/requesting.html");
+			});
+		</script>
+
+		<div id="orders-placeholder"></div>
+		<script>
+			$(function(){
+				$("#orders-placeholder").load("./modules/orders.html");
+			});
+		</script>
+
+		<div id="compact-placeholder"></div>
+		<script>
+			$(function(){
+				$("#compact-placeholder").load("./modules/compact.html");
+			});
+		</script>
+
+		<div id="console-placeholder"></div>
+		<script>
+			$(function(){
+				$("#console-placeholder").load("./modules/console.html");
+			});
+		</script>
+	</body>
+	<script type="text/javascript">
+		start();
+    </script>
+</html>

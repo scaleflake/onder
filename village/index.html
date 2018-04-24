@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>VILLAGE IMITATION</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body id="body">
+    <style type="text/css">
+        nav.navbar {
+            background-color: lightsteelblue;
+            margin: 0px 0px 20px 0px;
+            box-shadow: 0px 0.5px 5px 2px rgba(0, 0, 0, 0.3);
+        }
+        a.navbar-logo {
+            padding: 0px 10px 0px 10px;
+            display: inline-block;
+        }
+        a.navbar-link {
+            display: inline-block;
+            text-decoration: none;
+            color: steelblue;
+            font-size: 20px;
+        }
+        a.navbar-link:hover {
+            color: teal;
+            text-decoration: none;
+        }
+    </style>
+    <nav class="navbar"> <!-- navbar-expand-lg -->
+        <a class="navbar-brand" href="http://onder.tech" style="padding-right: 20px;"><img src="http://onder.tech/images/nder.svg"></a>
+        <div class="" id="navbarNav"> <!-- collapse navbar-collapse -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <style type="text/css">
+                        a.navbar-text {
+                            font-size: 20px;
+                            text-decoration: none; 
+                            color: steelblue;
+                            cursor: pointer;
+                            transition: 0.3s;
+                        }
+                        a.navbar-text:hover {
+                            color: teal;
+                        }
+                    </style>
+                    <a class="navbar-text" href="http://127.0.0.1:9001/gui/home.html">Graphical interface</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <style type="text/css">
+                    div#time {
+                        padding: 5px;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        background-color: #C1CFE1;
+                        margin: 0px 0px 20px 0px;
+                    }
+                    div#hour {
+                        text-align: center;
+                    }
+                </style>
+                <div id="time">
+                    <div id="hour">20</div>
+                    <input id="day-input" type="range" max="23" min="0" value="20" style="width: 100%;">
+                </div>
+                <!-- <style type="text/css">
+                    div#type-selector {
+                        padding: 5px;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        background-color: #C1CFE1;
+                        margin: 0px 0px 20px 0px;
+                    }
+                </style>
+                <div id="type-selector">
+                    <input id="" type="radio" style="width: 32%">
+                    <input id="" type="radio" style="width: 33%">
+                    <input id="" type="radio" style="width: 32%">
+                </div> -->
+                <style type="text/css">
+                    div#accounts {
+                        overflow: hidden;
+                        border-radius: 10px;
+                        font-family: monospace;
+                        background-color: #C1CFE1
+                    }
+
+                    div#accounts-header {
+                        padding: 5px;
+                        background-color: #A6BEE3;
+                    }
+                    div#accounts-header div {
+                        display: inline-block;
+                    }
+
+                    div.account-address {
+                        
+                        cursor: pointer;
+                        padding: 5px;
+                    }
+                    div.account-address div {
+                        display: inline-block;
+                    }
+                    div.account-address:hover {
+                        background-color: lightsteelblue;
+                    }
+                </style>
+                <div id="accounts">
+                    <div id="accounts-header"><div style="width: 73%">account</div><div style="width: 27%;">balance</div></div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div id="sensors">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./../database/contract.js"></script>
+    <script src="./types.js"></script>
+    <script src="./script.js"></script>
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            if (typeof web3 !== 'undefined') {
+                const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8545'));
+                start(web3);
+            } else {
+                console.error('MetaMask not detected')
+            }
+        });
+    </script>
+</body>
+
+</html>

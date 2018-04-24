@@ -1,0 +1,205 @@
+const account = "0xB49560a975B3d0CD73fA27f0F729b194f19BB5f7";
+const address = "0x40010b241C8eb47E1FB90787a6cA9F150a36E4b3";
+const interface = [
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "hour",
+                "type": "uint8"
+            }
+        ],
+        "name": "recalcProfiles",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x3d2f4160"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "category",
+                "type": "uint8"
+            }
+        ],
+        "name": "getEnergyByType",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x4ab105ce"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "id",
+                "type": "uint8"
+            },
+            {
+                "name": "watts",
+                "type": "int128"
+            }
+        ],
+        "name": "process",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x5f160d5a"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getGeneration",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x694db4e3"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "category",
+                "type": "uint8"
+            }
+        ],
+        "name": "getProfileByType",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128[48]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x7cd9677a"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getSensorsCount",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x840ef573"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "id",
+                "type": "uint8"
+            }
+        ],
+        "name": "getEnergyById",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x877ce083"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getConsumption",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0x8a5cb1b6"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "category",
+                "type": "uint8"
+            }
+        ],
+        "name": "addSensor",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function",
+        "signature": "0x90eeabd8"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "getCurrentHour",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xb63589a1"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "id",
+                "type": "uint8"
+            }
+        ],
+        "name": "getProfileById",
+        "outputs": [
+            {
+                "name": "",
+                "type": "int128[48]"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function",
+        "signature": "0xc1145eda"
+    },
+    {
+        "inputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor",
+        "signature": "constructor"
+    }
+]

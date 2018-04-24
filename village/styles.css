@@ -1,0 +1,124 @@
+body {
+    margin: 0px;
+    background-color: white;
+    --modules-bg-color: rgba(255, 255, 255, 1.0);
+
+    --scrollbar-thumb-color: #a3b2bf;
+    --scrollbar-track-color: rgba(200, 211, 221, 1.0);
+
+    --slider-track: steelblue;
+    --slider-thumb: #f0f0f0;
+
+    --generator: rgb(0, 125, 255);
+    --generator-alpha: rgba(0, 125, 255, 0.4);
+
+    --factory: rgb(3, 220, 60);
+    --factory-alpha: rgba(3, 220, 60, 0.4);
+
+    --household: rgb(153, 102, 204);
+    --household-alpha: rgba(153, 102, 204, 0.4);
+
+    --your: rgb(255, 79, 0);
+    --deficiency: rgb(210, 0, 20);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border: 0px none #ffffff;
+    border-radius: 50vw;
+}
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+    border: 0px none #ffffff;
+    border-radius: 50vw;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: rgba(0, 0, 0, 0.0);
+    width: 100%;
+    margin: 0px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    background-color: var(--slider-track);
+    border-radius: 50vh;
+    cursor: pointer;
+    height: 14px;
+    width: 100%;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: steelblue;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: var(--slider-thumb);
+    border-radius: 50vh;
+    cursor: pointer;
+    height: 12px;
+    margin-top: 1px;
+    width: 34px;
+}
+
+
+div#sensors {
+    overflow: auto;
+    max-height: 880px;
+}
+
+div.sensor {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    /*cursor: pointer;*/
+    font-size: 0px;
+    margin: 0px 5px 10px 5px;
+    padding: 4px 8px;
+    text-align: center;
+    text-size: 20px;
+    vertical-align: center;
+}
+
+div.generator {
+    border-color: var(--generator);
+    background-color: var(--generator-alpha);
+}
+
+div.factory {
+    border-color: var(--factory);
+    background-color: var(--factory-alpha);
+}
+
+div.household {
+    border-color: var(--household);
+    background-color: var(--household-alpha);
+}
+
+div.sensor div.id, div.sensor div.watts, div.sensor div.usage {
+    padding: 5px;
+    font-size: 16px;
+    display: inline-block;
+    width: 33%;
+}
+div.sensor div.owner {
+    padding: 5px 0px 0px 0px;
+    font-size: 10px;
+    font-family: monospace;
+}
