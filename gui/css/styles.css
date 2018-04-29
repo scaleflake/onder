@@ -1,16 +1,46 @@
-body.dark {
-	--parallax-background: ;
+/* {
+	/*border-radius: 100vw !important;
+	overflow: hidden;
+	transition: all 0.2s ease-in-out;
+	background-color: rgba(0, 50, 0, 0.1);
+	border-width: 0.5px;
+	border-style: solid;
+	border-top-color: blue;
+	border-left-color: red;
+	border-right-color: green;
+	border-bottom-color: yellow;
+	box-shadow: 0px 0px 5px 0px rgb(255, 255, 255, 0.1)
+}
+* > div {
+	background-color: rgba(60, 0, 0, 0.1) !important;
+}
+
+div + div {
+	background-color: rgba(0, 0, 50, 0.1) !important;
+}*/
+
+body[theme=dark] {
+	--parallax-background: url("");
 
 	--main-bg-color: rgb(30, 30, 30);
 	--main-font-color: white;
 	--main-link-color: #006FFF;
 
-	--modules-bg-color: rgba(60, 60, 60, 1.0);
-	--modules-shadow-color: rgba(0, 0, 0, 0.8);
+	--shadow-color: rgba(0, 0, 0, 0.8);
+
+	--modules-bg-color: rgb(60, 60, 60);
 	--modules-header-color: rgb(70, 70, 70);
 
-	--accent-light: #262626;
-	--accent-dark: #005aa5;
+	--blocks-bg-color: rgb(50, 50, 50, 1.0);
+
+	--orders-bg-color: rgba(0, 0, 0, 0.2);
+
+	--accent-light: rgb(30, 30, 30);
+	--accent-dark: rgb(0, 90, 165);
+
+
+
+
 
 	--scrollbar-track-color: rgb(40, 40, 40);
 	--scrollbar-thumb-color: rgb(70, 70, 70);
@@ -19,45 +49,78 @@ body.dark {
 	--slider-thumb: #c0c0c0;
 }
 
-body.dark input.form-control {
+body[theme=dark] input.form-control {
 	background-color: var(--slider-track);
 	border-color: var(--main-bg-color);
 	color: var(--main-font-color);
 }
 
-body.light {
+body[theme=light] {
 	--parallax-background: url("https://i.pinimg.com/originals/e5/f9/f3/e5f9f398bbae7953349a88beb427fa9d.png");
 
 	--main-bg-color: rgb(255, 255, 255);
-	--main-font-color: #04396C;
-	--main-link-color: #4671D5;
+	--main-font-color: rgb(4, 57, 108);
+	--main-link-color: rgb(0, 111, 255);
+
+	--shadow-color: rgba(0, 25, 100, 0.8);
 
 	--modules-bg-color: rgba(255, 255, 255, 1.0);
-	--modules-shadow-color: rgba(0, 25, 100, 0.8);
 	--modules-header-color: rgb(220, 230, 245);
 
-	--accent-light: lightsteelblue;
-	--accent-dark: rgb(130, 165, 200); /*steelblue*/
+	--blocks-bg-color: rgb(237, 242, 250, 1.0);
 
-	--scrollbar-thumb-color: #a3b2bf;
+	--orders-bg-color: rgba(176, 196, 222, 0.5);
+
+	--accent-light: lightsteelblue;
+	--accent-dark: rgb(130, 165, 200);
+
+
+
+	--scrollbar-thumb-color: rgb(163, 178, 191);
 	--scrollbar-track-color: rgba(200, 211, 221, 1.0);
 
 	--slider-track: lightsteelblue;
 	--slider-thumb: #f0f0f0;
 }
 
-body {
-	font-family: 'Roboto';
-	background-color: var(--main-bg-color);
+body[theme=dark-alt] {
+	--parallax-background: ;
+
+	--main-bg-color: rgb(30, 33, 36);
+	--main-font-color: white;
+	--main-link-color: #006FFF;
+
+	--shadow-color: rgba(0, 5, 10, 0.8);
+
+	--modules-bg-color: rgb(60, 66, 72);
+	--modules-header-color: rgb(70, 77, 84);
+
+	--blocks-bg-color: rgb(50, 55, 60, 1.0);
+
+	--orders-bg-color: rgba(0, 0, 0, 0.2);
+
+	--accent-light: rgb(30, 33, 36);
+	--accent-dark: rgb(0, 90, 165);
+
+
+
+	--scrollbar-track-color: rgb(36, 42, 48);
+	--scrollbar-thumb-color: rgb(70, 77, 84);
+
+	--slider-track: rgb(40, 44, 48);
+	--slider-thumb: #c0c0c0;
+}
+
+body[theme=dark-alt] input.form-control {
+	background-color: var(--slider-track);
+	border-color: var(--main-bg-color);
 	color: var(--main-font-color);
 }
 
-input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-label {
-	font-size: 15px;
+body {
+	/*font-family: 'Roboto';*/
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
 }
 
 ::-webkit-scrollbar {
@@ -81,51 +144,6 @@ label {
 ::-webkit-scrollbar-corner {
 	background: transparent;
 }
-
-
-
-
-
-
-
-input[type=range] {
-	border-radius: 50vh;
-	-webkit-appearance: none;
-	background-color: rgba(0, 0, 0, 0.0); 
-	width: 100%;
-	margin: 0px;
-}
-input[type=range]:focus {
-	/*border-color: rgba(126, 239, 104, 0.8);
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.075) inset, 0 0 0px rgba(80, 120, 255, 0.6);
-	outline: 0 none;*/
-}
-input[type=range]::-webkit-slider-runnable-track {
-	background-color: var(--slider-track);
-	border-color: var(--main-bg-color);
-	border-radius: 50vh;
-	border-width: 0.5px;
-	border-style: solid;
-	cursor: pointer;
-	height: 20px;
-	width: 100%;
-}
-/*input[type=range]:focus::-webkit-slider-runnable-track {
-	background: rgb(40, 40, 40);
-}*/
-input[type=range]::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	background-color: var(--slider-thumb);
-	border-radius: 50vh;
-	cursor: pointer;
-	height: 16px;
-	margin-top: 1px;
-	width: 34px;
-}
-
-
-
-
 
 /*input[type=range]::-moz-range-track {
 	width: 100%;

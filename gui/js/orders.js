@@ -43,38 +43,65 @@ function addOrderToPage(order, list) {
 	var eH = e.getHours();
 	var em = (e.getMinutes() < 10 ? '0' : '') + e.getMinutes();
 
-	var orders = $(`#${list}`);
-
 	var percentage = (order.covered / order.total * 100).toFixed(1);
 
-	var html = `<div class="item" id="order-${order.id}"> \n
-		<div class="id">#${order.id}</div> \n
-		<label>Beginning</label> \n
-		<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div> \n
-		<label>Ending</label> \n
-		<div class="time">${eD}.${eM}.${eY} ${eH}:${em}</div> \n
-		<label>Duration</label> \n
-		<div class="duration">${((order.ending - order.beginning) / (60 * 60)).toFixed(3)} hours</div> \n
-		<label>Watts</label> \n
-		<div class="watts"> \n
-			<div class="my-progress-bar"> \n
-				<div class="progress" style="width: ${percentage}%"></div> \n
-				<div class="progress-info"> \n
-					<div class="covered">${order.covered} kW</div><div class="percentage">${percentage}%</div><div class="total">${order.total} kW</div> \n
-				</div> \n
-			</div> \n
-		</div> \n
-		<label>Unit price</label> \n
-		<div class="price">${order.price} gwei/kW</div> \n
-		<label>State</label> \n
-		<div class="state">${order.state}</div> \n
-		${(function() { if (list == 'responding-orders') { return '<button class="btn btn-dark">Take part</button> \n'; } else { return ''; } })()}
-		</div><div style="display: inline-block; width: 0.5em;"></div>`;
+	// 2.0
+	var orders = $(`#${list}`);
+	var html = `<div class="item" id="order-${order.id}">
+	<div class="id">#${order.id}</div>
+	<label>Beginning</label>
+	<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div>
+	<label>Ending</label>
+	<div class="time">${eD}.${eM}.${eY} ${eH}:${em}</div>
+	<label>Duration</label>
+	<div class="duration">${((order.ending - order.beginning) / (60 * 60)).toFixed(3)} hours</div>
+	<label>Watts</label>
+	<div class="watts">
+		<div class="my-progress-bar">
+			<div class="progress" style="width: ${percentage}%"></div>
+			<div class="progress-info">
+				<div class="covered">${order.covered} kW</div><div class="percentage">${percentage}%</div><div class="total">${order.total} kW</div>
+			</div>
+		</div>
+	</div>
+	<label>Unit price</label>
+	<div class="price">${order.price} gwei/kW</div>
+	<label>State</label>
+	<div class="state">${order.state}</div>
+	${(function() { if (list == 'responding-orders') { return '<button class="btn">Take part</button>'; } else { return ''; } })()}
+</div>
+<div style="display: inline-block; width: 0.5em;"></div>`;
 	var item = $(html);
 	orders.append(item);
 	item.on('click', function() {
         signOrder(order.id);
     });
+
+	if (list == 'responding-orders') {
+		// 1.0
+		var orders2 = $(`#responding-orders-alt`);
+    	var html2 = `<div class="item" id="order-${order.id}">
+	<div class="id">#${order.id}</div>
+	<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div>
+	<div class="time">${eD}.${eM}.${eY} ${eH}:${em}</div>
+	<div class="duration">${((order.ending - order.beginning) / (60 * 60)).toFixed(3)} hours</div>
+	<div class="watts">
+		<div class="my-progress-bar">
+			<div class="progress" style="width: ${percentage}%"></div>
+			<div class="progress-info">
+				<div class="covered">${order.covered} kW</div><div class="percentage">${percentage}%</div><div class="total">${order.total} kW</div>
+			</div>
+		</div>
+	</div>
+	<div class="price">${order.price} gwei/kW</div>
+	<div class="state">${order.state}</div>
+</div>`;
+		var item2 = $(html2);
+		orders2.append(item2);
+		item2.on('click', function() {
+	        signOrder(order.id);
+	    });
+	}
 }
 
 function horizontalScroll(element) {

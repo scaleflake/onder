@@ -1,0 +1,83 @@
+<div class="module" id="market">
+	<script type="text/javascript">
+		var marketToggler = new ModuleToggler('market');
+	</script>
+	<div class="module-header" onclick="marketToggler.toggle()">
+		<span>Marketplace</span>
+	</div>
+	<div class="module-content">
+		<ul class="row" id="blocks-marketplace">
+			<li class="block col-md-4">
+				<div class="block-header" id="block-header-market-1">
+					<script type="text/javascript">
+						SettingsToggler('block-header-market-1', '1');
+					</script>
+				</div>
+				<div class="block-content">
+
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+					
+					<br>
+
+				</div>
+			</li>
+			<li class="col-md-8">
+				<div class="block-header" id="block-header-market-2">
+					<script type="text/javascript">
+						SettingsToggler('block-header-market-2', '2');
+					</script>
+				</div>
+				<div class="block-content">
+
+					<br>
+
+					<br>
+					
+					<br>
+
+					<br>
+
+					<br>
+					
+					<br>
+
+				</div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var list = document.getElementById("blocks-marketplace");
+			Sortable.create(list, { handle: '.block-header' });
+		</script>
+	</div>
+</div>
+<script type="text/javascript">
+	/*jshint esversion: 6 */
+
+	function startMarketplace() {
+		console.log('Marketplace!');
+	}
+
+	startMarketplace();
+</script>

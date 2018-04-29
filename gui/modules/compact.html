@@ -1,32 +1,324 @@
-<link rel="stylesheet" type="text/css" href="./css/module.css">
 <div class="module" id="compact">
 	<script type="text/javascript">
 		var compactToggler = new ModuleToggler('compact');
 	</script>
 	<div class="module-header" onclick="compactToggler.toggle()">
-		<div class="row">
-			<div class="col-12">
-				<span>Compact [dev]</span>
-			</div>
-		</div>
+		<span>Compact [dev]</span>
 	</div>
 	<div class="module-content">
-		<div class="row" style="padding-bottom: 10px;">
-			<div class="col-md-6">
-				<div class="block-header">Information</div>
-				<div class="block-content" style = " font-size: 0px;">
-					...
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="block-header">
-					Graphics
+		<ul class="row" id="compact-sorter">
+			<li class="block col-md-3">
+				<div class="block-header" id="block-header-compact-info">
+					<script type="text/javascript">
+						SettingsToggler('block-header-compact-info', 'Information');
+					</script>
 				</div>
 				<div class="block-content">
-					<canvas id="compact" width="1000px" height="350px">Error</canvas>	
+					<div class="info">
+						<div class="label">Some info 0: </div><div class="value" id = "a1">alpha-class</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info -1: </div><div class="value" id = "a2">0x2f3da4 ls/H</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info -10: </div><div class="value" id = "a3">+0.1387 v</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info A: </div><div class="value" id = "a1">0.8123 A</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info B: </div><div class="value" id = "a2">92314 gb</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info C: </div><div class="value" id = "a3">-0.1 km/sec</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info D: </div><div class="value" id = "a4">+/-235.2</div>
+					</div>
+					<div class="info">
+						<div class="label">Some info E: </div><div class="value" id = "a5">1.22525</div>
+					</div>
 				</div>
-			</div>
-		</div>
+			</li>
+			<li class="col-md-4">
+				<div class="block-header" id="block-header-compact-charts">
+					<script type="text/javascript">
+						SettingsToggler('block-header-compact-charts', 'Visualisation');
+					</script>
+				</div>
+				<div class="block-content">
+					<!-- <canvas id="compact" width="1000px" height="350px">Error</canvas>	 -->
+					<style type="text/css">
+						div#compact {
+							--bar-height: 24px;
+						}
+						div#compact-graphics div.label {
+							margin: 0 auto;
+							font-size: 14px;
+							opacity: 0.6;
+						}
+						div.compact-container {
+							display: block !important;
+							background-color: var(--accent-light); 
+							border-radius: 0px;
+							height: var(--bar-height);
+							overflow: hidden;
+
+							text-align: left !important;
+							width: 100%;
+						}
+						div.compact-bar {
+							display: block !important;
+							border-radius: 0px; 
+							height: var(--bar-height);
+							/*transition: 5.0s;
+							transition-timing-function: linear;
+							-webkit-transform: translateZ(0);
+							-moz-transform: translateZ(0);
+							-ms-transform: translateZ(0);
+							-o-transform: translateZ(0);
+							transform: translateZ(0);*/
+						}
+						div.compact-info {
+							display: block !important;
+							text-align: center;	
+							width: 100%;
+							
+							position: relative;
+							top: calc(-1 * var(--bar-height));
+						}
+						div.compact-info > div.bar-label,
+						div.compact-info > div.total,
+						div.compact-info > div.value {
+							display: inline-block !important;
+							width: 33%;
+							vertical-align: middle !important;
+						}
+						div.compact-info > div.total,
+						div.compact-info > div.value {
+							font-size: 13px !important;
+							padding: 0px 5px;
+						}
+						div.compact-info > div.total {
+							text-align: right;
+						}
+						div.compact-info > div.value {
+							text-align: left;
+						}
+					</style>
+					<div id="compact-graphics">
+						<div class="label">Deficiency: </div>
+						<div class="compact-container">
+							<div class="compact-bar" style="">
+								<div style="display: inline-block; width: 50%;">
+									<div style="float: right; height: 24px; background-color: rgb(210, 0, 20); width: 0.0%"></div>
+								</div><!-- 
+							 --><div style="display: inline-block; width: 50%;">
+									<div style="float: left; height: 24px; background-color: rgb(210, 0, 20); width: 40%"></div>
+								</div>
+							</div>
+							<div class="compact-info">
+								<div class="value">-</div><div class="bar-label">240 kW</div><div class="total">+</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<div style="height: 24px;"></div>
+						<div class="compact-container">
+							<div class="compact-bar" style="width: 0.0%; background-color: rgb(255, 79, 0)"></div>
+							<div class="compact-info">
+								<div class="value"></div><div class="bar-label">Add</div><div class="total"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="block col-md-5">
+				<div class="block-header" id="block-header-compact-orders">
+					<script type="text/javascript">
+						SettingsToggler('block-header-compact-orders', 'Responding');
+					</script>
+				</div>
+				<div class="block-content" id="responding">
+					<div class="scrollmenu" id="compact-scroll">
+						<div class="item" id="order-215"> 
+						<div class="id">#215</div> 
+						<label>Beginning</label> 
+						<div class="time">21.4.2018 19:00</div> 
+						<label>Ending</label> 
+						<div class="time">21.4.2018 23:00</div> 
+						<label>Duration</label> 
+						<div class="duration">4.000 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 63.1%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">82 kW</div><div class="percentage">63.1%</div><div class="total">130 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">180 gwei/kW</div> 
+						<label>State</label> 
+						<div class="state">open</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div><div class="item" id="order-221"> 
+						<div class="id">#221</div> 
+						<label>Beginning</label> 
+						<div class="time">22.4.2018 19:00</div> 
+						<label>Ending</label> 
+						<div class="time">22.4.2018 23:00</div> 
+						<label>Duration</label> 
+						<div class="duration">4.000 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 56.0%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">56 kW</div><div class="percentage">56.0%</div><div class="total">100 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">180 gwei/kW</div> 
+						<label>State</label> 
+						<div class="state">open</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div><div class="item" id="order-232"> 
+						<div class="id">#232</div> 
+						<label>Beginning</label> 
+						<div class="time">24.4.2018 15:00</div> 
+						<label>Ending</label> 
+						<div class="time">24.4.2018 17:00</div> 
+						<label>Duration</label> 
+						<div class="duration">2.000 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 65.0%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">52 kW</div><div class="percentage">65.0%</div><div class="total">80 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">185 gwei/kW</div> 
+						<label>State</label> 
+						<div class="state">open</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div><div class="item" id="order-235"> 
+						<div class="id">#235</div> 
+						<label>Beginning</label> 
+						<div class="time">25.4.2018 16:00</div> 
+						<label>Ending</label> 
+						<div class="time">25.4.2018 17:00</div> 
+						<label>Duration</label> 
+						<div class="duration">1.000 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 100.0%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">70 kW</div><div class="percentage">100.0%</div><div class="total">70 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">200 gwei/kW</div> 
+						<label>State</label>
+						<div class="state">open</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div><div class="item" id="order-249"> 
+						<div class="id">#249</div> 
+						<label>Beginning</label> 
+						<div class="time">26.4.2018 3:00</div> 
+						<label>Ending</label> 
+						<div class="time">28.4.2018 3:00</div> 
+						<label>Duration</label> 
+						<div class="duration">48.000 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 30.0%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">60 kW</div><div class="percentage">30.0%</div><div class="total">200 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">175 gwei/kW</div> 
+						<label>State</label> 
+						<div class="state">open</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div><div class="item" id="order-284"> 
+						<div class="id">#284</div> 
+						<label>Beginning</label> 
+						<div class="time">26.3.2018 7:44</div> 
+						<label>Ending</label> 
+						<div class="time">26.3.2018 20:34</div> 
+						<label>Duration</label> 
+						<div class="duration">12.833 hours</div> 
+						<label>Watts</label> 
+						<div class="watts"> 
+							<div class="my-progress-bar"> 
+								<div class="progress" style="width: 63.9%"></div> 
+								<div class="progress-info"> 
+									<div class="covered">94 kW</div><div class="percentage">63.9%</div><div class="total">147 kW</div> 
+								</div> 
+							</div> 
+						</div> 
+						<label>Unit price</label> 
+						<div class="price">219 gwei/kW</div> 
+						<label>State</label> 
+						<div class="state">active</div> 
+						<button class="btn btn-dark">Take part</button> 
+					</div><div style="display: inline-block; width: 0.5em;"></div></div>
+					<script type="text/javascript">
+						horizontalScroll('compact-scroll');
+					</script>
+				</div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var list = document.getElementById("compact-sorter");
+			Sortable.create(list, { handle: '.block-header'}); // That's all.
+		</script>
 	</div>
 </div>
-<script src="./js/compact.js"></script>
+<script type="text/javascript">
+	/*jshint esversion: 6 */
+
+	const compactGraphics = $('#compact-graphics');
+	const max = 600;
+
+	function CompactBar(label, color, buffer) {
+		var id = label.replace(/ /g, '');
+		var html = `<div class="label">${label}: </div>
+<div class="compact-container">
+	<div class="compact-bar" id="bar-${id}" style="width: 0.0%; background-color: ${color}"></div>
+	<div class="compact-info">
+		<div class="value" id="value-${id}">0 kW</div><div class="bar-label">${label}</div><div class="total">${max} kW</div>
+	</div>
+</div>`;
+		var item = $(html);
+		compactGraphics.append(item);
+
+		const bar = document.getElementById(`bar-${id}`);
+		const value = document.getElementById(`value-${id}`);
+		setInterval(function() {
+			bar.style.width = `${(DataCollector.buffer.realtime[buffer] / max * 100).toFixed(1)}%`;
+			value.innerHTML = `${ DataCollector.buffer.realtime[buffer].toFixed(3)} kW`;
+		}, 5000);
+	}
+
+	function startCompact() {
+		console.log('Compact!');
+		new CompactBar('Generation', 'rgb(0, 125, 255)', 'generation');
+		new CompactBar('Factories', 'rgb(3, 220, 60)',  'factories');
+		new CompactBar('Households', 'rgb(153, 102, 204)',  'households');
+		new CompactBar('Your consumption', 'rgb(255, 79, 0)',  'your');
+	}
+
+	startCompact();
+</script>

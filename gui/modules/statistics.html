@@ -1,19 +1,18 @@
-<link rel="stylesheet" type="text/css" href="./css/module.css">
 <div class="module" id="statistics">
 	<script type="text/javascript">
 		var statisticsToggler = new ModuleToggler('statistics');
 	</script>
 	<div class="module-header" onclick="statisticsToggler.toggle()">
-		<div class="row">
-			<div class="col-12">
-				<span>Statistics</span>
-			</div>
-		</div>
+		<span>Statistics</span>
 	</div>
 	<div class="module-content">
-		<div class="row" style="padding-bottom: 10px;">
-			<div class="col-md-3"> <!-- style="background-color: rgb(55, 55, 55);" -->
-				<div class="block-header">Information</div>
+		<ul class="row" id="blocks-statistics">
+			<li class="col-md-3">
+				<div class="block-header" id="block-header-statistics-info">
+					<script type="text/javascript">
+						SettingsToggler('block-header-statistics-info', 'Information');
+					</script>
+				</div>
 				<div class="block-content" style = " font-size: 0px;">
 					<div class="info">
 						<div class="label">Some info A: </div><div class="value" id = "a1">0.8123</div>
@@ -31,16 +30,112 @@
 						<div class="label">Some info E: </div><div class="value" id = "a5">1.22525</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-9">
-				<div class="block-header">
-					Hourly profiles
+			</li>
+			<li class="block col-md-9">
+				<div class="block-header" id="block-header-statistics-charts">
+					<script type="text/javascript">
+						SettingsToggler('block-header-statistics-charts', 'Hourly profiles');
+					</script>
 				</div>
 				<div class="block-content">
 					<canvas id="dayProfile" width="1000px" height="350px">Error</canvas> <!--  -->		
 				</div>
-			</div>
-		</div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var list = document.getElementById("blocks-statistics");
+			Sortable.create(list, { handle: '.block-header' });
+		</script>
 	</div>
 </div>
-<script src="./js/statistics.js"></script>
+<script type="text/javascript">
+	/*jshint esversion: 6 */
+	var profilesChart = {
+		constructor: function() {
+			this.data = {
+				labels: [
+					"00:--", " ", "01:--", " ", "02:--", " ", "03:--", " ", "04:--", " ", "05:--", " ",
+					"06:--", " ", "07:--", " ", "08:--", " ", "09:--", " ", "10:--", " ", "11:--", " ",
+					"12:--", " ", "13:--", " ", "14:--", " ", "15:--", " ", "16:--", " ", "17:--", " ",
+					"18:--", " ", "19:--", " ", "20:--", " ", "21:--", " ", "22:--", " ", "23:--", " ",
+				],
+				datasets: []
+			};
+
+			this.handlers = [];
+
+			var options = {};
+			Object.assign(options, charts.options);
+
+			this.canvasElement = document.getElementById("dayProfile");
+			this.canvasContext = this.canvasElement.getContext("2d");
+			this.chart = new Chart(this.canvasContext, {
+				type: 'line',
+				data: this.data,
+				options: options
+			});
+		},
+		addChart: function(label, color, handler) {
+			this.data.datasets.push({
+				label: label,
+				backgroundColor: color.replace('rgb', 'rgba').replace(')', ', 0.1)'),
+				borderColor: color.replace('rgb', 'rgba').replace(')', ', 0.8)'),
+				data: [
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+				],
+				borderWidth: 2.0,
+				fill: true,
+				hidden: false, // hides dataset
+				pointRadius: 2.0,
+				pointHoverRadius: 4.0,
+				pointBackgroundColor: color
+			});
+			this.handlers.push(handler);
+		},
+		start: function() {
+			var chart = this;
+
+			adapter.add(this);
+
+			function updateData() {
+				for (var i = 0; i < chart.handlers.length; i++) {
+					chart.handlers[i](chart.data, i);
+				} 
+			}
+
+			updateData();
+			chart.chart.update();
+			setTimeout(function() {
+				chart.chart.update();
+			}, 1000);
+			setInterval(function() {
+				updateData();
+				chart.chart.update();
+			}, 1000 * 10);
+		}
+	};
+
+	function startStatistics() {
+		console.log('Statistics!');
+		profilesChart.constructor();
+		profilesChart.addChart('Generation', charts.colors.generation, function(chartdata, i) {
+			chartdata.datasets[i].data = DataCollector.buffer.profiles.generation;
+		});
+		profilesChart.addChart('Factories', charts.colors.factories, function(chartdata, i) {
+			chartdata.datasets[i].data = DataCollector.buffer.profiles.factories;
+		});
+		profilesChart.addChart('Households', charts.colors.households, function(chartdata, i) {
+			chartdata.datasets[i].data = DataCollector.buffer.profiles.households;
+		});
+		profilesChart.addChart('Your consumption', charts.colors.your, function(chartdata, i) {
+			chartdata.datasets[i].data = DataCollector.buffer.profiles.your;
+		});
+		profilesChart.addChart('Deficiency', charts.colors.deficiency, function(chartdata, i) {
+			chartdata.datasets[i].data = DataCollector.buffer.profiles.deficiency;
+		});
+		profilesChart.start();
+	}
+
+	startStatistics();
+</script>

@@ -1,34 +1,54 @@
-<link rel="stylesheet" type="text/css" href="./css/module.css">
 <div class="module" id="monitoring">
 	<script type="text/javascript">
 		var monitoringToggler = new ModuleToggler('monitoring');
 	</script>
 	<div class="module-header" onclick="monitoringToggler.toggle()">
-		<div class="row">
-			<div class="col-12">
-				<!-- <span style="width: 50px">a</span>
-				<span style="width: 800px; margin: 0px -50px;">Monitoring</span>
-				<span style="width: 50px">b</span> -->
-				<div style="display: inline-block; width: 30px; margin: 0px;">a</div><!-- 
-			 --><div style="display: inline-block; width: 100%; margin: 0px -30px;">Monitoring</div><!-- 
-			 --><div style="display: inline-block; width: 30px; min-width: 30px; margin: 0px;">
-				 	<img src="https://png.icons8.com/metro/1600/settings.png" height="30px" width="30px">
-		 		</div>
-			</div>
-		</div>
+		<!-- <span style="width: 50px">a</span>
+		<span style="width: 800px; margin: 0px -50px;">Monitoring</span>
+		<span style="width: 50px">b</span> -->
+		<!-- <div style="display: inline-block; width: 30px; margin: 0px;">a</div> --><!-- 
+	 --><div style="display: inline-block; width: 100%; margin: 0px -30px;">Monitoring</div><!-- 
+	 --><!-- <div style="display: inline-block; width: 30px; min-width: 30px; margin: 0px;">
+			<img src="https://png.icons8.com/metro/1600/settings.png" height="30px" width="30px">
+		</div> -->
 	</div>
 	<div class="module-content"> 
-		<div class="row" style="padding-bottom: 10px;">
-			<div class="col-md-9">
-				<div class="block-header">
-					Generation and consumption
+		<style type="text/css">
+		div.info {
+			flex-wrap: wrap; 
+			padding-left: 0px;
+			padding: 5px 0px 10px 0px;
+		}
+		div.label {
+			display: inline-block;
+			font-size: 16px;
+			text-align: left;
+			width: 40%;
+		}
+		div.value {
+			display: inline-block;
+			font-size: 19px; 
+			text-align: right;
+			width: 60%;
+		}
+		</style>
+		<ul class="row" id="blocks-monitoring">
+			<li class="block col-md-9">
+				<div class="block-header" id="block-header-monitoring-charts">
+					<script type="text/javascript">
+						SettingsToggler('block-header-monitoring-charts', 'Generation and consumption');
+					</script>
 				</div>
 				<div class="block-content">
 					<canvas id="generationAndConsumption" width="1000px" height="350px">Error</canvas>
 				</div>
-			</div>
-			<div class="col-md-3"> <!-- style="background-color: rgb(55, 55, 55);" -->
-				<div class="block-header">Information</div>
+			</li>
+			<li class="col-md-3">
+				<div class="block-header" id="block-header-monitoring-info">
+					<script type="text/javascript">
+						SettingsToggler('block-header-monitoring-info', 'Information');
+					</script>
+				</div>
 				<div class="block-content" style="font-size: 0px;">
 					<div class="info">
 						<div class="label">Deficiency:</div><div class="value" id="deficiency">0.0</div>
@@ -46,8 +66,120 @@
 						<div class="label">Some info 2:</div><div class="value" id="zxcvbn">1.22525</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			var list = document.getElementById("blocks-monitoring");
+			Sortable.create(list, { handle: '.block-header' });
+		</script>
 	</div>
 </div>
-<script src="./js/monitoring.js"></script>
+<script type="text/javascript">
+	/*jshint esversion: 6 */
+	var realTimeChart = {
+	    constructor: function() {
+	        this.buffer = {
+	            values: []
+	        };
+
+	        this.data = {
+	            labels: [
+	                " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
+	                " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ",
+	                " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "
+	            ],
+	            datasets: []
+	        };
+
+	        this.handlers = [];
+
+	        var options = {};
+	        Object.assign(options, charts.options);
+
+	        this.canvasElement = document.getElementById("generationAndConsumption");
+	        this.canvasContext = this.canvasElement.getContext("2d");
+	        this.chart = new Chart(this.canvasContext, {
+	            type: 'line',
+	            data: this.data,
+	            options: options
+	        });
+	    },
+	    addChart: function(label, color, handler) {
+	        this.buffer.values.push(0);
+	        this.data.datasets.push({
+	            label: label,
+	            backgroundColor: color.replace('rgb', 'rgba').replace(')', ', 0.1)'),
+	            borderColor: color.replace('rgb', 'rgba').replace(')', ', 0.8)'),
+	            data: [
+	                NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN,
+	                NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN, NaN
+	            ],
+	            borderWidth: 2.0,
+	            fill: true,
+	            hidden: false, // hides dataset
+	            pointRadius: 2.0,
+	            pointHoverRadius: 4.0,
+	            pointBackgroundColor: color
+	        });
+	        this.handlers.push(handler);
+	    },
+	    start: function() {
+	        var chart = this;
+
+	        adapter.add(this);
+
+	        function getData() {
+	            for (var i = 0; i < chart.handlers.length; i++) {
+	                chart.handlers[i](chart.buffer, i);
+	            }
+	        }
+
+	        var add = true;
+	        function pushData() {
+	            for (var i = 0; i < chart.data.datasets.length; i++) {
+	                chart.data.datasets[i].data.push(chart.buffer.values[i]);
+	                chart.data.datasets[i].data.shift();
+	            }
+	            if (add) {
+	                var time = new Date();
+	                chart.data.labels.push(String(time.getHours()) + ":" + String(time.getMinutes()) + ":" + String(time.getSeconds()));
+	            } else {
+	                chart.data.labels.push("");
+	            }
+	            add = !add;
+	            chart.data.labels.shift();
+	        }
+
+	        getData();
+	        chart.chart.update();
+	        setInterval(function() {
+	            getData();
+	            pushData();
+	            chart.chart.update();
+	        }, 5000);
+	    }
+	};
+
+	function startMonitoring() {
+		console.log('Monitoring!');
+	    realTimeChart.constructor();
+	    realTimeChart.addChart('Generation', charts.colors.generation, function(buffer, i) {
+	        buffer.values[i] = DataCollector.buffer.realtime[`generation`];
+	    });
+	    realTimeChart.addChart('Factories', charts.colors.factories, function(buffer, i) {
+	        buffer.values[i] = DataCollector.buffer.realtime[`factories`];
+	    });
+	    realTimeChart.addChart('Households', charts.colors.households, function(buffer, i) {
+	        buffer.values[i] = DataCollector.buffer.realtime[`households`];
+	    });
+	    realTimeChart.addChart('Your consumption', charts.colors.your, function(buffer, i) {
+	        buffer.values[i] = DataCollector.buffer.realtime[`your`];
+	    });
+	    realTimeChart.addChart("Deficiency", charts.colors.deficiency, function(buffer, i) {
+	        buffer.values[i] = DataCollector.buffer.realtime[`deficiency`];
+	    });
+	    realTimeChart.start();
+	}
+
+	startMonitoring();
+</script>

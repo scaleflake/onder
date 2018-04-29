@@ -37,5 +37,12 @@ function setCookie(name, value, options) {
 function deleteCookie(name) {
 	setCookie(name, "", {
 		expires: -1
-	})
+	});
+}
+
+function DEL() {
+	var cookies = ['sensorid', 'theme', 'struct'];
+	cookies.forEach(function(e) {
+		deleteCookie(e);
+	});
 }

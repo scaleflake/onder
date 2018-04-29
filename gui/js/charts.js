@@ -93,7 +93,7 @@ var adapter = {
             }
         });
     },
-    adapt: function(adapter) {
+    adapt: function() {
         var width = window.innerWidth;
 
         if (width < 375) {
@@ -120,7 +120,7 @@ var adapter = {
     },
     add: function(chart) {
         this.charts.push(chart);
-        this.adapt(this);
+        this.adapt();
     },
     start: function() {
         window.addEventListener("resize", this.adapt.bind(null, this));

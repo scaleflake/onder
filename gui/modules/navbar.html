@@ -1,35 +1,35 @@
 <style type="text/css">
-	#parallax {
+	div#parallax {
 		position: fixed; 
 		background: var(--parallax-background) center 0 repeat fixed;
-		/*background: url("http://www.clker.com/cliparts/6/2/0/2/13926481231764053423simple-blue-background.jpg") center 0 repeat fixed;*/
-		/*background: url("https://static.pexels.com/photos/268415/pexels-photo-268415.jpeg") center 0 repeat fixed;*/
-		/*background: url("https://www.iwantwallpaper.co.uk/images/p-s-international-striped-pattern-plain-stripe-textured-embossed-wallpaper-05565-50-p2573-5119_image.jpg") center 0 repeat fixed;*/ 
-		/*background: url(http://onder.tech/images/invalid-name.svg) center 0 no-repeat fixed;*/
-		/*background-size: 100%;*/
+		background-size: 160%;
 		z-index: -1; 
 		height: 100%; 
 		width: 100%;
 	}
 </style>
-<div id = "parallax" data-speed="10"></div>
+<div id="parallax"></div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#parallax').each(function() {
 			var obj = $(this);
 			$(window).scroll(function() {
-				var yPos = -($(window).scrollTop() / obj.data('speed'));	
-				var coords = 'center '+ yPos + 'px';
+				var coords = 'center '+ -1 * $(window).scrollTop() / 5 + 'px';
 				obj.css({ backgroundPosition: coords });
 			});
 		});
 	});
 </script>
 <style type="text/css">
-	nav.navbar {
+	header {
+		margin-bottom: 20px;
 		background-color: var(--modules-bg-color);
+		box-shadow: 0 2px 20px var(--modules-shadow-color);
 		color: white;
-		box-shadow: 0 3px 20px var(--modules-shadow-color);
+	}
+	nav.navbar {
+		max-width: 1440px;
+		margin: auto;
 	}
 	nav.navbar a {
 		color: var(--main-font-color);
@@ -39,79 +39,237 @@
 		text-decoration: none;
 		color: var(--main-link-color);
 	}
-	div.separator {
-	    height: 2px;
-	    object-fit: contain;
-	    background: linear-gradient(to left, #00a5ba, #f7c604 52%, #ff0000);
-	    min-width: 1183px;
+	body[theme=light] a.logo-light {
+		display: block;
 	}
-	span.navbar-button {
-		font-size: 24px; color: #04396C;
+	body[theme=light] a.logo-dark {
+		display: none;
+	}
+	body[theme=dark] a.logo-light,
+	body[theme=dark-alt] a.logo-light {
+		display: none;
+	}
+	body[theme=dark] a.logo-dark,
+	body[theme=dark-alt] a.logo-dark {
+		display: block;
+	}
+	ul#switchers {
+
+	}
+	ul#togglers {
+		position: static;
+	}
+	div.collapsed + div.navbar-collapse ul#togglers {
+		position: absolute; 
+		right: 0px;"
+		transition: 0.3s;
+	}
+	li.nav-item {
+		display: inline-block;
+	}
+	body[struct=rounded] span.navbar-text,
+	body[struct=rounded-alt] span.navbar-text {
+		border-radius: 20px;
+	}
+	span.navbar-text {
+		color: var(--main-font-color);
+		cursor: pointer;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	span.navbar-text:hover {
+		color: var(--main-link-color);
+		background-color: var(--accent-light);
+	}
+	body[theme=light] span.navbar-text:hover {
+		background-color: var(--modules-header-color);
+	}
+
+	div.navbar-toggler {
+		background-color: var(--accent-light);
+		border-radius: 50px;
+		font-size: 16px;
+		height: 42px; 
+		padding-top: 10px;
+		padding-bottom: 0px;
+		padding-left: 0px;
+		padding-right: 0px;
+		transition: 0.3s;
+		width: 42px;
+		text-align: center;
+	}
+	div.navbar-toggler:hover {
+		background-color: var(--accent-dark);
+	}
+	body[struct=straight] div.navbar-toggler {
+		border-radius: 0px;
+	}
+	body[struct=rounded] div.navbar-toggler,
+	body[struct=rounded-alt] div.navbar-toggler {
+		border-radius: 50px;
+	}
+	span.navbar-toggler-icon {
+		font-size: 22px;
+		vertical-align: bottom;
 	}
 </style>
-<nav class="module navbar navbar-expand-sm">
-	<!-- <a class="navbar-brand" href="http://onder.tech">ØNDER</a> -->
-	<a class="navbar-brand" href="http://onder.tech" style="padding-right: 20px;"><img src="http://onder.tech/images/nder.svg"></a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-button" style="color: white;">Ξ</span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<script type="text/javascript">
-					function toggleTheme() {
-						var body = document.getElementById('body').classList; 
-						if (body.contains('light')) { 
-							body.remove('light'); 
-							body.add('dark');
-							setCookie('theme', 'dark');
-						} else if (body.contains('dark')) { 
-							body.remove('dark'); 
-							body.add('light');
-							setCookie('theme', 'light');
+<header>
+	<nav class="navbar navbar-expand-lg">
+		<div class="navbar-brand">
+			<a class="logo-light" href="http://onder.tech"><img src="./assets/onder-light.svg"></a>
+			<a class="logo-dark" href="http://onder.tech"><img src="./assets/onder-dark.svg"></a>
+		</div>
+
+		<div class="navbar-toggler collapsed" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon">Ξ</span>
+		</div>
+
+		<div class="navbar-collapse collapse" id="collapsibleNavbar">
+			<script type="text/javascript">
+				/*jshint esversion: 6 */
+				function switchTheme() {
+					let themes = ['light', 'dark', 'dark-alt'];
+					for (let i = 0; i < themes.length; i++) {
+						if ($body.attr('theme') == themes[i]) {
+							if (i == themes.length-1) {
+								$body.attr('theme', themes[0]);
+								setCookie('theme', themes[0]);
+							} else {
+								$body.attr('theme', themes[i+1]);
+								setCookie('theme', themes[i+1]);
+							}
+							break;
 						}
-						console.log('Theme toggled: ' + document.cookie);
 					}
+				}
+				function switchStruct() {
+					let structs = ['straight', 'rounded', 'rounded-alt'];
+					for (let i = 0; i < structs.length; i++) {
+						if ($body.attr('struct') == structs[i]) {
+							if (i == structs.length-1) {
+								$body.attr('struct', structs[0]);
+								setCookie('struct', structs[0]);
+							} else {
+								$body.attr('struct', structs[i+1]);
+								setCookie('struct', structs[i+1]);
+							}
+							break;
+						}
+					}
+				}
+			</script>
+			<ul class="navbar-nav" id="switchers">
+				<li class="nav-item">
+					<span class="navbar-text" id="theme-switcher" onclick="switchTheme()">Switch theme</span>
+				</li>
+				<li class="nav-item">
+					<span class="navbar-text" id="struct-switcher" onclick="switchStruct()">Switch struct</span>
+				</li>
+			</ul>
+			<ul class="navbar-nav" id="togglers">
+				<li class="nav-item">
+					<span class="navbar-text" id="main-toggler">Demand responce</span>
+				</li>
+				<li class="nav-item">
+					<span class="navbar-text" id="market-toggler">Marketplace</span>
+				</li>
+				<li class="nav-item">
+					<span class="navbar-text" id="info-toggler">Infographics</span>
+				</li>
+				<li class="nav-item">
+					<span class="navbar-text" id="dev-toggler">/dev</span>
+				</li>
+				<script type="text/javascript">
+					/*jshint esversion: 6 */
+					const modules = document.getElementById('pages-slider');
+
+					const mainToggle = document.getElementById('main-toggler');
+					mainToggle.addEventListener('click', function() {
+						modules.style.marginLeft = '0%';
+					});
+					const marketToggle = document.getElementById('market-toggler');
+					marketToggle.addEventListener('click', function() {
+						modules.style.marginLeft = '-100%';
+					});
+					const infoToggle = document.getElementById('info-toggler');
+					infoToggle.addEventListener('click', function() {
+						modules.style.marginLeft = '-200%';
+					});
+					const devToggle = document.getElementById('dev-toggler');
+					devToggle.addEventListener('click', function() {
+						modules.style.marginLeft = '-300%';
+					});
 				</script>
-				<style type="text/css">
-					span.navbar-text {
-						color: var(--main-font-color);
-						cursor: pointer;
-					}
-					span.navbar-text:hover {
-						color: red;
-					}
-				</style>
-				<span class="navbar-text" onclick="toggleTheme()">Toggle theme</span>
-			</li>
-			<!-- <li class="nav-item active">
-				<a class="nav-link" href="./home.html">Home<span class="sr-only">(current)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./monitoring.html">Monitoring</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./statistics.html">Demand</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="./orders.html">Respond</a>
-			</li>
-			<li class="nav-item">
-				<style type="text/css">
-					a.dev {
-						color: #eeeeee !important;
-						font-family: monospace;
-						transition: 0.3s;
-						vertical-align: center;
-					}
-					a.dev:hover {
-						color: red !important;
-					}
-				</style>
-				<a class="nav-link dev" href="./dev.html">dev</a>
-			</li> -->
-		</ul>
-	</div>
-</nav>
-<!-- <div class="separator"></div> -->
-<div style="height: 40px;"></div>
+			</ul>
+			<script type="text/javascript">
+				/*jshint esversion: 6 */
+				let navbarItems = [
+					$('#theme-switcher'), $('#struct-switcher'), 
+					$('#main-toggler'), $('#market-toggler'), 
+					$('#info-toggler'), $('#dev-toggler')
+				];
+				let r1 = -8,  r2 = -247;
+				let g1 = 198, g2 = -33;
+				let b1 = 4,   b2 = 182;
+				
+				function navbarColors() {
+					let documentWidth = $(document).width();
+					let p48 = documentWidth * 0.48;
+					let p52 = documentWidth - p48;
+					navbarItems.forEach(function(e) {
+						let offset = e.offset().left - e.width() / 2;
+
+						// console.log(offset);
+						if (offset < p48) {
+							// console.log('1st');
+							let position = offset;
+							// console.log(position);
+							let k = position / p48;
+							// console.log(k);
+							let color = `rgb(${(255 + r1 * k).toFixed(0)}, ${(0 + g1 * k).toFixed(0)}, ${(0 + b1 * k).toFixed(0)})`;
+							// console.log(color);
+							e.hover(function() {
+								e.css('color', color);
+							}, function() {
+								e.css('color', '');
+							});
+						} else {
+							// console.log('2nd');
+							let position = offset - p48;
+							// console.log(position);
+							let k = position / p52;
+							// console.log(k);
+							let color = `rgb(${(247 + r2 * k).toFixed(0)}, ${(198 + g2 * k).toFixed(0)}, ${(4 + b2 * k).toFixed(0)})`;
+							// console.log(color);
+							e.hover(function() {
+								e.css('color', color);
+							}, function() {
+								e.css('color', '');
+							});
+						}
+						// console.log(' ');
+					});
+				}
+				$(navbarColors);
+				$(window).resize(navbarColors);
+			</script>
+		</div>
+	</nav>
+	<style type="text/css">
+		div.separator {
+			z-index: 2;
+		    height: 2px;
+		    object-fit: contain;
+		    background: linear-gradient(to left, #00a5ba 0%, #f7c604 52%, #ff0000 100%);
+		    width: 100%;
+		}
+		div.separator2 {
+			z-index: 2;
+		    height: 10px;
+		    object-fit: contain;
+		    background: linear-gradient(to left, #00a5ba, #f7c604, #ff0000);
+		    width: 100%;
+		}
+	</style>
+	<div class="separator"></div>
+</header>

@@ -1,0 +1,102 @@
+<script type="text/javascript">
+	$.get("./modules/setup.html", function(data) {
+        window.setuphtml = data;
+    });
+	$.get("./modules/navbar.html", function(data) {
+        window.navbarhtml = data;
+    });
+    $.get("./modules/orders.html", function(data) {
+        window.ordershtml = data;
+    });
+    $.get("./modules/console.html", function(data) {
+        window.consolehtml = data;
+    });
+</script>
+
+<div id="setup-placeholder"></div>
+<script>
+	$("#setup-placeholder").replaceWith(window.setuphtml);
+</script>
+
+<div id = "navbar-placeholder"></div>
+<script>
+	$("#navbar-placeholder").replaceWith(window.navbarhtml);
+</script>
+
+<div id="orders-placeholder"></div>
+<script>
+	$("#orders-placeholder").replaceWith(window.ordershtml);
+</script>
+
+<div id="console-placeholder"></div>
+<script>
+	$("#console-placeholder").replaceWith(window.consolehtml);
+</script>	
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="font-size: 30px; font-family: sans-serif; font-weight: 100; padding-left: 20px;">ØNDER</a>
+            <!-- <img style = "color: gray" src="onder.svg"> -->
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./monitoring.html">Monitoring</a></li>
+            <li class="active"><a href="./statistics.html">Demand</a></li>
+            <li><a href="./orders.html">Respond</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item active">
+        <a class="nav-link" href="./home.html">Ethereum account <span class="sr-only">(current)</span></a>
+    </li>
+</ul>
+
+
+<span class="navbar-text" style="text-align: max-width: 10px; right; font-family: monospace; font-size: 12px; overflow: auto;">
+<script type="text/javascript">
+    document.write(window.web3.eth.accounts[0].substring(0, 15) + '...');
+</script>
+</span>
+
+
+
+
+<script type="text/javascript">
+    const parent = document.getElementById('parentnode');
+    const first = document.getElementById('parentnode');
+    window.addEventListener("resize", function() {
+        if (window.innerWidth < 768) {
+            mon.insertBefore()
+        }
+    });
+</script>
+
+
+<script>
+  function swapDiv(event,elem){
+    elem.parentNode.insertBefore(elem, elem.parentNode.firstChild);
+  }
+</script>
+<div id="container">
+  <div onclick="swapDiv(event, this);">
+    <div>
+      1
+    </div>
+  </div>
+  <div onclick="swapDiv(event, this);">
+    <div>
+      2
+    </div>
+  </div>
+</div>
+
+<!-- <span>⚙</span> -->
+
+<div class="watts">
+    <div class="total">52 kW</div><div class="progress-bar"><div class="progress" style="width: 65%">65%</div></div><div class="covered">80 kW</div>
+</div>

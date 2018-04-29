@@ -1,76 +1,197 @@
 div.module {
-	/*max-width: 1440px;*/
 	background-color: var(--modules-bg-color);
-	box-shadow: 0 2px 20px var(--modules-shadow-color);
+	box-shadow: 0 3px 20px -1px var(--shadow-color);
 	margin-bottom: 30px;
 	margin-left: auto;
 	margin-right: auto;
-	overflow: hidden;
-	padding: 0px 15px;
-	transition: all 0.3s ease-in-out;
+	overflow-y: hidden;
+	transition: all 0.3s linear;
 	width: 100%;
 	z-index: 2;
+}
+body[struct=straight] div.module {
+	border-radius: 0px;
+}
+body[struct=rounded] div.module {
+	border-radius: 20px;
+}
+body[struct=rounded-alt] div.module {
+	border-radius: 20px;
+}
+
+div.module div.row {
+	overflow: hidden;
+	transition: all 0.3s linear;
 }
 
 div.module-header {
 	background-color: var(--modules-header-color);
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+	box-shadow: 0px 0px 20px 0px var(--shadow-color);
 	cursor: pointer;
 	font-size: 20px; 
 	margin: 0px; 
-	padding: 10px 0px;
+	padding: 7px 0px;
+	position: relative;
 	text-align: center;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.3s linear;
 	width: 100%;
+	z-index: 1;
+}
+div.module-header:hover {
+	background-color: var(--modules-header-color);
+}
+div.module-header:hover::after {
+    content: 'Drag modules to swap them';
+    font-size: 11px;
+    opacity: 0.5;
+    position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+    top: 65%;
+    z-index: 1;
+}
+body[struct=straight] div.module-header {
+	border-radius: 0px;
+}
+body[struct=straight] div.module.hidden > div.module-header {
+	
+}
+body[struct=rounded] div.module-header {
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+body[struct=rounded] div.module.hidden > div.module-header {
+	
+}
+body[struct=rounded-alt] div.module-header {
+	border-radius: 0px;
+}
+body[struct=rounded-alt] div.module.hidden > div.module-header {
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
 }
 
 div.module-content {
+	padding: 0px 15px;
 	max-height: 1000px;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.3s linear;
 }
-
-div.module.hidden div.module-header {
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
+div.module-content ul {
+	list-style-type: none;
+	padding-left: 0;
 }
-div.module.hidden div.module-content {
+div.module-content li {
+	isplay: block;
+	vertical-align: top;
+	overflow-x: hidden;
+}
+div.module.hidden > div.module-content {
 	max-height: 0px;
 }
 
-
+/*BLOCKS*/
+li.block {
+	background-color: var(--blocks-bg-color);
+}
 div.block-header {
+	/*background-color: rgb(65, 65, 65);
+	cursor: pointer;
 	font-size: 18px; 
-	margin: 0px;
-	padding: 10px 0px 20px 0px;
-	text-align: center
+	padding: 5px 0px 5px 0px;
+	position: relative;
+	text-align: center;
+	transition: 0.3s;*/
+	background-color: var(--modules-header-color);
+	cursor: pointer;
+	font-size: 18px; 
+	max-height: 37px;
+	overflow-y: hidden;
+	padding: 0px;
+	position: relative;
+	text-align: center;
+	transition: 0.3s;
+	min-width: 170px;
+	margin: 10px auto;
 }
+div.block-header:hover {
+	background-color: var(--modules-header-color);
+}
+div.block-header:hover::after {
+    content: 'Drag blocks to swap them';
+    font-size: 11px;
+    opacity: 0.5;
+    position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+    top: 65%;
+    z-index: 1;
+}
+body[struct=straight] div.block-header {
+	border-radius: 0px;
+	/*margin: 10px 0px 10px 0px;*/
+}
+body[struct=rounded] div.block-header {
+	border-radius: 20px;
+	/*margin: 10px 30px 10px 30px;*/
+}
+body[struct=rounded-alt] div.block-header {
+	border-radius: 20px;
+	/*margin: 10px 30px 10px 30px;*/
+}
+
 div.block-content {
-
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
-div.info {
-	flex-wrap: wrap; 
-	padding-left: 0px;
+div.block-label,
+div.block-settings {
+	display: block;
+	padding: 5px 0px 5px 0px;
+	transition: 0.3s;
 }
-div.label {
-	display: inline-block;
+div.block-settings {
+	font-family: monospace;
+}
+div.block-settings-toggler {
+	background-color: var(--accent-light);
+	border-radius: 50px;
 	font-size: 16px;
-	text-align: left;
-	width: 40%;
+	height: 29px; 
+	opacity: 0.4;
+	padding-top: 3px;
+	position: absolute; 
+	right: 4px; 
+	top: 4px; 
+	transition: 0.3s;
+	width: 29px;
 }
-div.value {
-	display: inline-block;
-	font-size: 19px; 
-	padding: 5px 0px 10px 0px;
-	text-align: right;
-	width: 60%;
+body[struct=straight] div.block-settings-toggler {
+	border-radius: 0px;
+	height: 37px; 
+	padding-top: 7px;
+	right: 0px; 
+	top: 0px; 
+	width: 37px;
 }
-div.module > div.row{
-	overflow: hidden;
-	transition: all 0.3s ease-in-out;
+body[struct=rounded] div.block-settings-toggler,
+body[struct=rounded-alt] div.block-settings-toggler {
+	border-radius: 50px;
+	height: 29px; 
+	padding-top: 3px;
+	right: 4px; 
+	top: 4px; 
+	width: 29px;
+}
+div.block-settings-toggler:hover {
+	background-color: var(--accent-dark);
+	opacity: 1.0;
 }
