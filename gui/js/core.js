@@ -15,6 +15,7 @@ class Block {
 }
 
 function ModuleToggler(moduleName) {
+	// let blockHeader = $('#' + id);
 	this.module = document.getElementById(moduleName);
 	this.hidden = this.module.classList.contains('hidden');
 	this.toggle = function() {
@@ -34,8 +35,12 @@ function SettingsToggler(id, label) {
 	blockHeader.append(blockLabel);
 	let blockSettings = $(`<div class="block-settings">soon</div>`);
 	blockHeader.append(blockSettings);
-	let blockSettingsToggler = $(`<div class="block-settings-toggler">⚙</div>`);
+	let blockDraggerButton = $(`<div class="block-dragging-button"><img src="./assets/move.svg"></div>`); //⬌
+	blockHeader.append(blockDraggerButton);
+	let blockSettingsToggler = $(`<div class="block-settings-toggler"><img src="./assets/settings.svg"></div>`); // ⚙
 	blockHeader.append(blockSettingsToggler);
+	let blockDraggingHint = $(`<div class="block-dragging-hint">Drag blocks to swap them</div>`);
+	blockHeader.append(blockDraggingHint);
 
 	let settings = false;
 	blockSettingsToggler.on('click', function() {

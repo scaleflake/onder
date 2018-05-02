@@ -18,19 +18,8 @@ var DataCollector = {
 			'deficiency': 0
 		}
 	},
-	startRandom: function() {
-		setInterval(function() {
-			
-		}, 10000);
-		setInterval(function() {
-			
-		}, 5000);
-	},
 	start: function(web3, contract) {
-		if (web3 == 'salat' && contract == 'picca') {
-			return;
-		}
-		setInterval(function() {
+		function getProfiles() {
 			contract.getProfileByType(0, function(error, result) {
 				if (!error) {
 					for (var i = 0; i < 48; i++) {
@@ -41,15 +30,15 @@ var DataCollector = {
 				}
 			});
 			contract.getProfileByType(1, function(error, result) {
-	            if (!error) {
-	                for (var i = 0; i < 48; i++) {
-	                    DataCollector.buffer.profiles.factories[i] = result[i].toNumber() / 1000;
-	                }
-	            } else {
-	                console.error(error);
-	            }
-	        });
-	        contract.getProfileByType(2, function(error, result) {
+				if (!error) {
+					for (var i = 0; i < 48; i++) {
+						DataCollector.buffer.profiles.factories[i] = result[i].toNumber() / 1000;
+					}
+				} else {
+					console.error(error);
+				}
+			});
+			contract.getProfileByType(2, function(error, result) {
 				if (!error) {
 					for (var i = 0; i < 48; i++) {
 						DataCollector.buffer.profiles.households[i] = result[i].toNumber() / 1000;
@@ -73,40 +62,54 @@ var DataCollector = {
 				var households = DataCollector.buffer.profiles.households[i];
 				DataCollector.buffer.profiles.deficiency[i] = generation + factories + households;
 			}
-		}, 10000);
-		setInterval(function() {
+		}
+		function getRealtime() {
 			contract.getEnergyByType(0, function(error, result) {
-	            if (!error) {
-	                DataCollector.buffer.realtime[`generation`] = result.toNumber() / -1000.0;
-	            } else {
-	                console.error(error);
-	            }
-	        });
-	        contract.getEnergyByType(1, function(error, result) {
-	            if (!error) {
-	                DataCollector.buffer.realtime[`factories`] = result.toNumber() / 1000.0;
-	            } else {
-	                console.error(error);
-	            }
-	        });
-	        contract.getEnergyByType(2, function(error, result) {
-	            if (!error) {
-	                DataCollector.buffer.realtime[`households`] = result.toNumber() / 1000.0;
-	            } else {
-	                console.error(error);
-	            }
-	        });
-	        contract.getEnergyById(parseInt(getCookie('sensorid')), function(error, result) {
-	            if (!error) {
-	                DataCollector.buffer.realtime[`your`] = result.toNumber() / 1000.0;
-	            } else {
-	                console.error(error);
-	            }
-	        });
-	        var generation = DataCollector.buffer.realtime[`generation`] * -1;
-	        var factories = DataCollector.buffer.realtime[`factories`];
-	        var households = DataCollector.buffer.realtime[`households`];
-	        DataCollector.buffer.realtime[`deficiency`] = generation + factories + households;
-		}, 5000);
+				if (!error) {
+					DataCollector.buffer.realtime[`generation`] = result.toNumber() / -1000.0;
+				} else {
+					console.error(error);
+				}
+			});
+			contract.getEnergyByType(1, function(error, result) {
+				if (!error) {
+					DataCollector.buffer.realtime[`factories`] = result.toNumber() / 1000.0;
+				} else {
+					console.error(error);
+				}
+			});
+			contract.getEnergyByType(2, function(error, result) {
+				if (!error) {
+					DataCollector.buffer.realtime[`households`] = result.toNumber() / 1000.0;
+				} else {
+					console.error(error);
+				}
+			});
+			contract.getEnergyById(parseInt(getCookie('sensorid')), function(error, result) {
+				if (!error) {
+					DataCollector.buffer.realtime[`your`] = result.toNumber() / 1000.0;
+				} else {
+					console.error(error);
+				}
+			});
+			var generation = DataCollector.buffer.realtime[`generation`] * -1;
+			var factories = DataCollector.buffer.realtime[`factories`];
+			var households = DataCollector.buffer.realtime[`households`];
+			DataCollector.buffer.realtime[`deficiency`] = generation + factories + households;
+		}
+
+		function getRandomProfiles() {
+			
+		}
+		function getRandomRealtime() {
+
+		}
+
+		if (web3 != null && contract != null) {
+			setTimeout(getProfiles, 20000);
+			setTimeout(getRealtime, 5000);
+		} else {
+			setTimeout(getRandomRealtime, 5000);
+		}
 	},
 };

@@ -20,7 +20,7 @@ var charts = {
         legend: {
             display: false,
             labels: {
-                boxWidth: 24
+                boxWidth: 16
             }
         },
         layout: {

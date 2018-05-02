@@ -4,18 +4,15 @@ var app = express();
 app.use('/', express.static(__dirname + '/'));
 
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/test.html');
+	res.send('Hello, ONDER!');
 });
 
-app.get('/test', function(req, res) {
-	res.sendFile(__dirname + '/test.html');
-});
 app.get('/village', function(req, res) {
 	res.sendFile(__dirname + '/village/index.html');
 });
 
-app.get('/home', function(req, res) {
-	res.sendFile(__dirname + '/gui/home.html');
+app.get('/gui', function(req, res) {
+	res.sendFile(__dirname + '/gui/gui.html');
 });
 
 app.get('/ip', function(req, res) {

@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const GENERATOR = 0;
 const FACTORY = 1;
 const HOUSEHOLD = 2;
@@ -38,11 +39,11 @@ const types = [{
 
 function getRandomFloat(min, max) {
     return (Math.random() * (max - min)) + min;
-};
+}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 function getRandomProfile(type) {
     var profile = types[type].profile;
@@ -54,3 +55,8 @@ function getRandomProfile(type) {
     }
     return profile;
 }
+
+function getRandomHour() {
+
+}
+

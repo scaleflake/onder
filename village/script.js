@@ -70,6 +70,7 @@ function addSensor(type, owner) {
             console.log('Sensor added: ' + result);
             setInterval(function() {
                 if (true) {
+                    getRandomHour();
                     var energy = profile[currentHour] * getRandomFloat(0.95, 1.05) * consumption;
                     contract.process.sendTransaction(id, Math.floor(energy * 1000), options, function(error, result) {
                         if (error) { console.error(error); } 

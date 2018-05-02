@@ -7,7 +7,7 @@
 	</div>
 	<div class="module-content">
 		<ul class="row" id="compact-sorter">
-			<li class="block col-md-3">
+			<li class="col-md-3 dark">
 				<div class="block-header" id="block-header-compact-info">
 					<script type="text/javascript">
 						SettingsToggler('block-header-compact-info', 'Information');
@@ -40,7 +40,7 @@
 					</div>
 				</div>
 			</li>
-			<li class="col-md-4">
+			<li class="col-md-4 light">
 				<div class="block-header" id="block-header-compact-charts">
 					<script type="text/javascript">
 						SettingsToggler('block-header-compact-charts', 'Visualisation');
@@ -133,7 +133,7 @@
 					</div>
 				</div>
 			</li>
-			<li class="block col-md-5">
+			<li class="col-md-5 dark">
 				<div class="block-header" id="block-header-compact-orders">
 					<script type="text/javascript">
 						SettingsToggler('block-header-compact-orders', 'Responding');
@@ -282,7 +282,7 @@
 		</ul>
 		<script type="text/javascript">
 			var list = document.getElementById("compact-sorter");
-			Sortable.create(list, { handle: '.block-header'}); // That's all.
+			Sortable.create(list, { handle: '.block-dragging-button'}); // That's all.
 		</script>
 	</div>
 </div>

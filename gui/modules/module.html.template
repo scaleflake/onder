@@ -1,13 +1,37 @@
-<div class="module" id="requesting">
-	<script type="text/javascript">
-		var requestingToggler = new ModuleToggler('requesting');
-	</script>
-	<div class="module-header" onclick="requestingToggler.toggle()">
-		<div>Requesting</div>
+{
+	"name": "requesting",
+	"label": "Requseting",
+	"blocks": [{
+			"name": "history",
+			"label": "History",
+			"width": 8
+		}, {
+			"name": "create-order",
+			"label": Create order",
+			"width": 4
+		}
+	]
+}
+
+
+<div class="module" id="${MODULE}">
+	<div class="module-header" onclick="toggle()">
+		<span>Requesting</span>
 	</div>
-	<div class="module-content">
+	<script type="text/javascript">
+		var toggle = function() {
+			if (this.hidden) {
+				this.module.classList.remove('hidden');
+				this.hidden = false; 
+			} else {
+				this.module.classList.add('hidden');
+				this.hidden = true; 
+			}
+		}
+	</script>
+	<div class="module-content" >
 		<ul class="row" id="blocks-requesting">
-			<li class="col-md-8 dark" id="block-history">
+			<li class="block col-md-8" id="block-history">
 				<div class="block-header" id="block-header-history">
 					<script type="text/javascript">
 						SettingsToggler('block-header-history', 'History');
@@ -20,7 +44,7 @@
 					</script>
 				</div>
 			</li>
-			<li class="col-md-4 light" id="create-order">
+			<li class="col-md-4" id="create-order">
 				<div class="block-header" id="block-header-create-order">
 					<script type="text/javascript">
 						SettingsToggler('block-header-create-order', 'Create order');
@@ -42,6 +66,7 @@
 							transition: 0.3s;
 							transition-timing-function: ease-in-out;
 							padding: 0px;
+
 							vertical-align: top;
 						}
 						div#create-order-input {

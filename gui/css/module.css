@@ -87,7 +87,7 @@ div.module-content ul {
 	padding-left: 0;
 }
 div.module-content li {
-	isplay: block;
+	display: block;
 	vertical-align: top;
 	overflow-x: hidden;
 }
@@ -96,17 +96,13 @@ div.module.hidden > div.module-content {
 }
 
 /*BLOCKS*/
-li.block {
+li.light {
 	background-color: var(--blocks-bg-color);
 }
+li.dark {
+	background-color: var(--modules-bg-color);
+}
 div.block-header {
-	/*background-color: rgb(65, 65, 65);
-	cursor: pointer;
-	font-size: 18px; 
-	padding: 5px 0px 5px 0px;
-	position: relative;
-	text-align: center;
-	transition: 0.3s;*/
 	background-color: var(--modules-header-color);
 	cursor: pointer;
 	font-size: 18px; 
@@ -122,29 +118,14 @@ div.block-header {
 div.block-header:hover {
 	background-color: var(--modules-header-color);
 }
-div.block-header:hover::after {
-    content: 'Drag blocks to swap them';
-    font-size: 11px;
-    opacity: 0.5;
-    position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;
-    top: 65%;
-    z-index: 1;
-}
 body[struct=straight] div.block-header {
 	border-radius: 0px;
-	/*margin: 10px 0px 10px 0px;*/
 }
 body[struct=rounded] div.block-header {
 	border-radius: 20px;
-	/*margin: 10px 30px 10px 30px;*/
 }
 body[struct=rounded-alt] div.block-header {
 	border-radius: 20px;
-	/*margin: 10px 30px 10px 30px;*/
 }
 
 div.block-content {
@@ -161,37 +142,82 @@ div.block-settings {
 div.block-settings {
 	font-family: monospace;
 }
-div.block-settings-toggler {
+div.block-settings-toggler,
+div.block-dragging-button {
 	background-color: var(--accent-light);
 	border-radius: 50px;
 	font-size: 16px;
 	height: 29px; 
-	opacity: 0.4;
-	padding-top: 3px;
+	opacity: 0.3;
 	position: absolute; 
-	right: 4px; 
 	top: 4px; 
 	transition: 0.3s;
 	width: 29px;
 }
-body[struct=straight] div.block-settings-toggler {
+div.block-settings-toggler > img,
+div.block-dragging-button > img {
+	position: absolute;
+	height: 50%;
+	width: 50%;
+	top: 25%;
+	left: 25%;
+}
+div.block-settings-toggler {
+	right: 4px;
+}
+div.block-dragging-button {
+	left: 4px;
+}
+body[struct=straight] div.block-settings-toggler,
+body[struct=straight] div.block-dragging-button {
 	border-radius: 0px;
 	height: 37px; 
-	padding-top: 7px;
-	right: 0px; 
+	/*padding-top: 7px;*/
 	top: 0px; 
 	width: 37px;
 }
+body[struct=straight] div.block-settings-toggler {
+	right: 0px;
+}
+body[struct=straight] div.block-dragging-button {
+	left: 0px;
+}
+
 body[struct=rounded] div.block-settings-toggler,
-body[struct=rounded-alt] div.block-settings-toggler {
+body[struct=rounded-alt] div.block-settings-toggler,
+body[struct=rounded] div.block-dragging-button,
+body[struct=rounded-alt] div.block-dragging-button {
 	border-radius: 50px;
 	height: 29px; 
-	padding-top: 3px;
-	right: 4px; 
+	/*padding-top: 3px;*/
 	top: 4px; 
 	width: 29px;
 }
-div.block-settings-toggler:hover {
+body[struct=rounded] div.block-settings-toggler,
+body[struct=rounded-alt] div.block-settings-toggler {
+	right: 4px;
+}
+body[struct=rounded] div.block-dragging-button,
+body[struct=rounded-alt] div.block-dragging-button {
+	left: 4px;
+}
+
+
+div.block-settings-toggler:hover,
+div.block-dragging-button:hover {
 	background-color: var(--accent-dark);
 	opacity: 1.0;
+}
+
+div.block-dragging-hint {
+	font-size: 11px;
+    opacity: 0.5;
+    position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 50px;
+	right: 50px;
+    top: 62%;
+    z-index: 1;
+    display: none;
 }

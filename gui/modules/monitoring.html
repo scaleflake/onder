@@ -33,7 +33,7 @@
 		}
 		</style>
 		<ul class="row" id="blocks-monitoring">
-			<li class="block col-md-9">
+			<li class="col-md-9 dark">
 				<div class="block-header" id="block-header-monitoring-charts">
 					<script type="text/javascript">
 						SettingsToggler('block-header-monitoring-charts', 'Generation and consumption');
@@ -43,7 +43,7 @@
 					<canvas id="generationAndConsumption" width="1000px" height="350px">Error</canvas>
 				</div>
 			</li>
-			<li class="col-md-3">
+			<li class="col-md-3 light">
 				<div class="block-header" id="block-header-monitoring-info">
 					<script type="text/javascript">
 						SettingsToggler('block-header-monitoring-info', 'Information');
@@ -70,7 +70,7 @@
 		</ul>
 		<script type="text/javascript">
 			var list = document.getElementById("blocks-monitoring");
-			Sortable.create(list, { handle: '.block-header' });
+			Sortable.create(list, { handle: '.block-dragging-button' });
 		</script>
 	</div>
 </div>

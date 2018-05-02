@@ -9,22 +9,20 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 		<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script> -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
-
-		<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js" crossorigin="anonymous"></script>
+		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-		<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.6.1/Sortable.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.6.1/Sortable.min.js" crossorigin="anonymous"></script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+		<link rel="icon" type="image/png" href="./favicon.png" />
 
 		<link rel="stylesheet" type="text/css" href="./css/module.css">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css">
 		
-		<link rel="icon" type="image/png" href="./favicon.png" />
-
 		<script src="./../database/contract.js"></script>
 		<script src="./js/libs/cookie.js"></script>
 		<script src="./js/core.js"></script>
@@ -51,6 +49,7 @@
 			setAttr('theme', 'dark-alt');
 			setAttr('struct', 'rounded-alt');
 		</script>
+
 		<div id="setup-placeholder">
 			<style type="text/css">
 				div#setup {
@@ -94,79 +93,69 @@
 			</style>
 			<div id="setup">
 				<div id="setup-module">
-						<div id="setup-block">
-							<div class="block-header" id="setup-header">
-								<div class="block-label">
-									Setup
-								</div>
-								<!-- <div class="block-settings">soon</div>
-								<div class="block-settings-toggler">⚙</div> -->
+					<div id="setup-block">
+						<div class="block-header" id="setup-header">
+							<div class="block-label">
+								Setup
 							</div>
-							<div class="block_content" id="setup-content">
-								<div class="form-group">
-									<label>Your ethereum address: </label>
-									<div id="ethaddress" style = "font-size: 16px; overflow: hidden;">0x0000000000000000000000000000000000000000</div>
-								</div>
-								<div class="form-group">
-									<label>Sensors count in whole ØNDER network: </label>
-									<div id="networkcount" style = "font-size: 16px;">6</div>
-								</div>
-								<div class="form-group">
-									<label>Sensor ID: </label>
-									<input id="sensorid" class = "form-control" type = "text" placeholder = "0 - 6">
-								</div>
-								<div class="form-group">
-									<label>Sensor subnetwork: </label>
-									<div id="subnetwork" style = "font-size: 16px;">-</div>
-								</div>
-								<div class="form-group">
-									<label>Sensors count in alpha subnetwork: </label>
-									<div id="subnetworkcount" style = "font-size: 16px;">-</div>
-								</div>
-								<button id="done" class="btn btn-success">Done</button>
+						</div>
+						<div class="block_content" id="setup-content">
+							<div class="form-group">
+								<label>Your ethereum address: </label>
+								<div id="ethaddress" style = "font-size: 16px; overflow: hidden;">0x0000000000000000000000000000000000000000</div>
 							</div>
+							<div class="form-group">
+								<label>Sensors count in whole ØNDER network: </label>
+								<div id="networkcount" style = "font-size: 16px;">6</div>
+							</div>
+							<div class="form-group">
+								<label>Sensor ID: </label>
+								<input id="sensorid" class = "form-control" type = "text" placeholder = "0 - 6">
+							</div>
+							<div class="form-group">
+								<label>Sensor subnetwork: </label>
+								<div id="subnetwork" style = "font-size: 16px;">-</div>
+							</div>
+							<div class="form-group">
+								<label>Sensors count in alpha subnetwork: </label>
+								<div id="subnetworkcount" style = "font-size: 16px;">-</div>
+							</div>
+							<button id="done" class="btn btn-success">Done</button>
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
-					var sensorid = document.getElementById('sensorid');
-					var subnetwork = document.getElementById('subnetwork');
-					var subnetworkcount = document.getElementById('subnetworkcount');
-					var done = document.getElementById('done');
-
-					sensorid.addEventListener('input', function() {
-						if (sensorid.value == undefined || sensorid.value == "") {
-							subnetwork.innerHTML = '<font style = "color: white;">-</font>';
-							subnetworkcount.innerHTML = '-';
-						} else {
-							subnetwork.innerHTML = '<font style = "color: red;">alpha</font>';
-							subnetworkcount.innerHTML = '6';
-						}
-					});
-
-					done.addEventListener('click', function() {
-						var id = sensorid.value;
-						if (id == undefined || id == '') {
-							console.error('Uncorrect ID');
-						} else {
-							setCookie('sensorid', String(id));
-							document.getElementById('setup').style.display = 'none';
-							checkComponents();
-						}
-						console.log(document.cookie);
-					});
-				</script>
 			</div>
+			<script type="text/javascript">
+				var sensorid = document.getElementById('sensorid');
+				var subnetwork = document.getElementById('subnetwork');
+				var subnetworkcount = document.getElementById('subnetworkcount');
+				var done = document.getElementById('done');
+
+				sensorid.addEventListener('input', function() {
+					if (sensorid.value == undefined || sensorid.value == "") {
+						subnetwork.innerHTML = '<font style = "color: white;">-</font>';
+						subnetworkcount.innerHTML = '-';
+					} else {
+						subnetwork.innerHTML = '<font style = "color: red;">alpha</font>';
+						subnetworkcount.innerHTML = '6';
+					}
+				});
+
+				done.addEventListener('click', function() {
+					var id = sensorid.value;
+					if (id == undefined || id == '') {
+						console.error('Uncorrect ID');
+					} else {
+						setCookie('sensorid', String(id));
+						document.getElementById('setup').style.display = 'none';
+						checkComponents();
+					}
+					console.log(document.cookie);
+				});
+			</script>
 		</div>
 
-		<script src="./js/default.js"></script>
-
 		<div id="navbar-placeholder"></div>
-		<script>
-			$(function(){
-				$("#navbar-placeholder").load("./modules/navbar.html");
-			});
-		</script>
 
 		<style type="text/css">
 			div#content {
@@ -226,84 +215,68 @@
 			<div id="sidebar">
 				soon
 			</div><!-- 
+
 		 --><div id="pages">
 				<div id="pages-slider"></div><!-- 
+
 			 --><div class="page">
 					<ul class="modules" id="modules-main">
 						<li class="module-placeholder" id="requesting-placeholder"></li>
-						<script>
-							$(function(){
-								$("#requesting-placeholder").load("./modules/requesting.html");
-							});
-						</script>
 						<li class="module-placeholder" id="responding-placeholder"></li>
-						<script>
-							$(function(){
-								$("#responding-placeholder").load("./modules/responding.html");
-							});
-						</script>
 						<li class="module-placeholder" id="responding-alt-placeholder"></li>
-						<script>
-							$(function(){
-								$("#responding-alt-placeholder").load("./modules/responding-alt.html");
-							});
-						</script>
 					</ul>
-					<script type="text/javascript">
-						var list = document.getElementById("modules-main");
-						Sortable.create(list, { handle: '.module-header' });
-					</script>
 				</div><!-- 
+
 			 --><div class="page">
 			 		<ul class="modules" id="modules-market">
 			 			<li class="module-placeholder" id="market-placeholder"></li>
-						<script>
-							$(function(){
-								$("#market-placeholder").load("./modules/market.html");
-							});
-						</script>
 					</ul>
 				</div><!-- 
+
 			 --><div class="page">
 			 		<ul class="modules" id="modules-info">
 			 			<li class="module-placeholder" id="monitoring-placeholder"></li>
-						<script>
-							$(function(){
-								$("#monitoring-placeholder").load("./modules/monitoring.html");
-							});
-						</script>
 						<li class="module-placeholder" id="statistics-placeholder"></li>
-						<script>
-							$(function(){
-								$("#statistics-placeholder").load("./modules/statistics.html");
-							});
-						</script>
 					</ul>
-					<script type="text/javascript">
-						var list = document.getElementById("modules-info");
-						Sortable.create(list, { handle: '.module-header' });
-					</script>
 				</div><!-- 
+
 			 --><div class="page">
 				 	<ul class="modules" id="modules-dev">
 				 		<li class="module-placeholder" id="compact-placeholder"></li>
-						<script>
-							$(function(){
-								$("#compact-placeholder").load("./modules/compact.html");
-							});
-						</script>
 					</ul>
 				</div>
 			</div>
 		</div>
 
 		<div id="console-placeholder"></div>
+
 		<script>
-			$(function(){
+			$(function() {
+				// nav
+				$("#navbar-placeholder").load("./modules/navbar.html");
+
+				// main
+				$("#requesting-placeholder").load("./modules/requesting.html");
+				$("#responding-placeholder").load("./modules/responding.html");
+				$("#responding-alt-placeholder").load("./modules/responding-alt.html");
+				Sortable.create(document.getElementById("modules-main"), { handle: '.module-header' });
+
+				// market
+				$("#market-placeholder").load("./modules/market.html");
+
+				// info
+				$("#monitoring-placeholder").load("./modules/monitoring.html");
+				$("#statistics-placeholder").load("./modules/statistics.html");
+				Sortable.create(document.getElementById("modules-info"), { handle: '.module-header' });
+
+				// dev
+				$("#compact-placeholder").load("./modules/compact.html");
+
+				// console
 				$("#console-placeholder").load("./modules/console.html");
 			});
-		</script>
-
+		</script>	
+		<script src="./js/default.js"></script>
 		<script src="./js/data.js"></script>
 		<script type="text/javascript">
 			start();

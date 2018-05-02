@@ -1,24 +1,3 @@
-/* {
-	/*border-radius: 100vw !important;
-	overflow: hidden;
-	transition: all 0.2s ease-in-out;
-	background-color: rgba(0, 50, 0, 0.1);
-	border-width: 0.5px;
-	border-style: solid;
-	border-top-color: blue;
-	border-left-color: red;
-	border-right-color: green;
-	border-bottom-color: yellow;
-	box-shadow: 0px 0px 5px 0px rgb(255, 255, 255, 0.1)
-}
-* > div {
-	background-color: rgba(60, 0, 0, 0.1) !important;
-}
-
-div + div {
-	background-color: rgba(0, 0, 50, 0.1) !important;
-}*/
-
 body[theme=dark] {
 	--parallax-background: url("");
 
@@ -28,17 +7,15 @@ body[theme=dark] {
 
 	--shadow-color: rgba(0, 0, 0, 0.8);
 
-	--modules-bg-color: rgb(60, 60, 60);
+	--modules-bg-color: rgb(50, 50, 50);
 	--modules-header-color: rgb(70, 70, 70);
 
-	--blocks-bg-color: rgb(50, 50, 50, 1.0);
+	--blocks-bg-color: rgb(60, 60, 60);
 
 	--orders-bg-color: rgba(0, 0, 0, 0.2);
 
 	--accent-light: rgb(30, 30, 30);
 	--accent-dark: rgb(0, 90, 165);
-
-
 
 
 
@@ -64,10 +41,10 @@ body[theme=light] {
 
 	--shadow-color: rgba(0, 25, 100, 0.8);
 
-	--modules-bg-color: rgba(255, 255, 255, 1.0);
 	--modules-header-color: rgb(220, 230, 245);
-
-	--blocks-bg-color: rgb(237, 242, 250, 1.0);
+	--modules-bg-color: rgb(237, 242, 250);
+	
+	--blocks-bg-color: rgb(255, 255, 255);
 
 	--orders-bg-color: rgba(176, 196, 222, 0.5);
 
@@ -90,12 +67,12 @@ body[theme=dark-alt] {
 	--main-font-color: white;
 	--main-link-color: #006FFF;
 
-	--shadow-color: rgba(0, 5, 10, 0.8);
+	--shadow-color: rgba(4, 7, 10, 0.8);
 
-	--modules-bg-color: rgb(60, 66, 72);
 	--modules-header-color: rgb(70, 77, 84);
+	--modules-bg-color: rgb(50, 55, 60);
 
-	--blocks-bg-color: rgb(50, 55, 60, 1.0);
+	--blocks-bg-color: rgb(60, 66, 72);
 
 	--orders-bg-color: rgba(0, 0, 0, 0.2);
 
@@ -111,14 +88,13 @@ body[theme=dark-alt] {
 	--slider-thumb: #c0c0c0;
 }
 
-body[theme=dark-alt] input.form-control {
+body[theme=dark-alt] input.form-control {	
 	background-color: var(--slider-track);
 	border-color: var(--main-bg-color);
 	color: var(--main-font-color);
 }
 
 body {
-	/*font-family: 'Roboto';*/
 	background-color: var(--main-bg-color);
 	color: var(--main-font-color);
 }
