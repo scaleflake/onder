@@ -28,6 +28,10 @@ function getRandomOrder(id, callback) {
 	callback(order);
 }
 
+function signOrder(id) {
+	console.log(id);
+}
+
 function addOrderToPage(order, list) {
 	var b = new Date(order.beginning * 1000);
 	var bD = b.getDate();
@@ -45,9 +49,11 @@ function addOrderToPage(order, list) {
 
 	var percentage = (order.covered / order.total * 100).toFixed(1);
 
-	// 2.0
-	var orders = $(`#${list}`);
-	var html = `<div class="item" id="order-${order.id}">
+	let orders = $('#' + list);
+
+	if (list == 'responding-orders') {
+		// 2.0
+		let html = `<div class="item" id="order-${order.id}">
 	<div class="id">#${order.id}</div>
 	<label>Beginning</label>
 	<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div>
@@ -71,16 +77,15 @@ function addOrderToPage(order, list) {
 	${(function() { if (list == 'responding-orders') { return '<button class="btn">Take part</button>'; } else { return ''; } })()}
 </div>
 <div style="display: inline-block; width: 0.5em;"></div>`;
-	var item = $(html);
-	orders.append(item);
-	item.on('click', function() {
-        signOrder(order.id);
-    });
 
-	if (list == 'responding-orders') {
+		let item = $(html);
+		orders.append(item);
+		item.on('click', function() {
+	        signOrder(order.id);
+	    });
+	} else if (list == 'responding-orders-alt') {
 		// 1.0
-		var orders2 = $(`#responding-orders-alt`);
-    	var html2 = `<div class="item" id="order-${order.id}">
+    	let html = `<div class="item" id="order-${order.id}">
 	<div class="id">#${order.id}</div>
 	<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div>
 	<div class="time">${eD}.${eM}.${eY} ${eH}:${em}</div>
@@ -96,12 +101,46 @@ function addOrderToPage(order, list) {
 	<div class="price">${order.price} gwei/kW</div>
 	<div class="state">${order.state}</div>
 </div>`;
-		var item2 = $(html2);
-		orders2.append(item2);
-		item2.on('click', function() {
+
+		let item = $(html);
+		orders.append(item);
+		item.on('click', function() {
+	        signOrder(order.id);
+	    });
+	} else if (list == 'requesting-orders') {
+		// 2.0
+		let html = `<div class="item" id="order-${order.id}">
+	<div class="id">#${order.id}</div>
+	<label>Beginning</label>
+	<div class="time">${bD}.${bM}.${bY} ${bH}:${bm}</div>
+	<label>Ending</label>
+	<div class="time">${eD}.${eM}.${eY} ${eH}:${em}</div>
+	<label>Duration</label>
+	<div class="duration">${((order.ending - order.beginning) / (60 * 60)).toFixed(3)} hours</div>
+	<label>Watts</label>
+	<div class="watts">
+		<div class="my-progress-bar">
+			<div class="progress" style="width: ${percentage}%"></div>
+			<div class="progress-info">
+				<div class="covered">${order.covered} kW</div><div class="percentage">${percentage}%</div><div class="total">${order.total} kW</div>
+			</div>
+		</div>
+	</div>
+	<label>Unit price</label>
+	<div class="price">${order.price} gwei/kW</div>
+	<label>State</label>
+	<div class="state">${order.state}</div>
+	${(function() { if (list == 'responding-orders') { return '<button class="btn">Take part</button>'; } else { return ''; } })()}
+</div>
+<div style="display: inline-block; width: 0.5em;"></div>`;
+
+		let item = $(html);
+		orders.append(item);
+		item.on('click', function() {
 	        signOrder(order.id);
 	    });
 	}
+	
 }
 
 function horizontalScroll(element) {

@@ -26,9 +26,12 @@ app.get('/ip', function(req, res) {
 		console.log('LAN : ' + reqip + ' : ' + '192.168.0.49' + '\n');
 		res.send('192.168.0.49');
 	} else {
-		public.v4().then(extip => {
+		public.v4().then(function(extip) {
 			console.log('WAN : ' + reqip + ' : ' + extip + '\n');
 			res.send(extip);
+		}, function(error) {
+			console.log('WAN : ' + reqip + ' : ' + 'ERROR' + '\n');
+			res.send('ERROR');
 		});
 	}
 });

@@ -213,10 +213,6 @@
 		state: 'open'
 	}];
 
-	function signOrder(id) {
-		console.log(id);
-	}
-
 	function startResponding() {
 		console.log('Responding!');
 		predefined.forEach(function(e) {
@@ -226,4 +222,6 @@
 			addOrderToPage(order, 'responding-orders');
 		});
 	}
+
+	startResponding();
 </script>
