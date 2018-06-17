@@ -22,9 +22,8 @@
 </script>
 <style type="text/css">
 	header {
-		margin-bottom: 20px;
 		background-color: var(--modules-bg-color);
-		box-shadow: 0 2px 20px var(--modules-shadow-color);
+		box-shadow: 0 3px 20px -1px var(--shadow-color);
 		color: white;
 		position: relative;
 	}
@@ -40,6 +39,9 @@
 		max-width: 1440px;
 		margin: auto;
 	}
+	a.logo svg {
+		display: block;
+	}
 	nav.navbar a {
 		color: var(--main-font-color);
 		transition: 0.2s;
@@ -48,18 +50,6 @@
 		text-decoration: none;
 		color: var(--main-link-color);
 	}
-	a.logo svg {
-		display: block;
-	}
-/*	a.logo:hover path {
-		fill: rgba(0, 0, 0 ,0);
-	}*/
-	/*ul#switchers {
-		
-	}
-	ul#togglers {
-		position: static;
-	}*/
 	div.collapsed + div.navbar-collapse ul#togglers {
 		position: absolute; 
 		right: 0px;"

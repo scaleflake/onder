@@ -20,7 +20,7 @@ app.get('/gui', function(req, res) {
 app.get('/ip', function(req, res) {
 	var reqip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	if (reqip == '::ffff:127.0.0.1') {
-		console.log('localhost : ' + ip + '\n');
+		console.log('localhost : ' + reqip + '\n');
 		res.send('127.0.0.1');
 	} else if (reqip.match(/::ffff:192.168.0./)) {
 		console.log('LAN : ' + reqip + ' : ' + '192.168.0.49' + '\n');
@@ -36,5 +36,5 @@ app.get('/ip', function(req, res) {
 	}
 });
 
-app.listen(80);
+app.listen(9001);
 console.log('Server started');

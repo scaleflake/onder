@@ -1,0 +1,98 @@
+<!-- <script>
+	let request = {
+		"name": "requesting",
+		"label": "Requseting",
+		"blocks": [{
+				"name": "history",
+				"label": "History",
+				"width": 8
+			}, {
+				"name": "create-order",
+				"label": "Create order",
+				"width": 4
+			}
+		]
+	};
+</script> -->
+
+<div class="module" id="${ MODULE }">
+	<div class="module-header">
+		<div>Monitoring</div>
+	</div>
+	<div class="module-content" >
+		<ul class="row" id="blocks-requesting">
+			<li class="block col-md-8" id="block-history">
+				
+			</li>
+			<li class="col-md-4" id="create-order">
+				
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+	/*jshint esversion: 6 */
+	const begin = document.getElementById('begin');
+
+	const end = document.getElementById('end');
+
+	const energy = document.getElementById('energy');
+	const energyDiv = document.getElementById('energy-div');
+	energy.addEventListener("input", function() {
+	    energyDiv.innerHTML = energy.value;
+	});
+
+	const price = document.getElementById('price');
+
+	const input = document.getElementById('create-order-input');
+	const request = document.getElementById('request-button');
+
+	const confirmation = document.getElementById('create-order-confirmation');
+	const confirm = document.getElementById('confirm-button');
+	const cancel = document.getElementById('cancel-button');
+
+	const wrapper = document.getElementById('orders-wrapper');
+
+	request.addEventListener('click', function() {
+		input.style.marginLeft = 'calc(-100% - 20px)';
+	});
+
+	confirm.addEventListener('click', function() {
+		
+	});
+
+	cancel.addEventListener('click', function() {
+		input.style.marginLeft = '0%';
+	});
+
+	var historyOrders = [{
+		id: 215,
+		beginning: 1526918400,
+		ending: 1526932800,
+		total: 130,
+		covered: 82,
+		price: 180,
+		state: 0
+	}, {
+		id: 221,
+		beginning: 1527004800,
+		ending: 1527019200,
+		total: 100,
+		covered: 56,
+		price: 180,
+		state: 0
+	}];
+
+	function startRequesting() {
+		console.log('Requesting!');
+		historyOrders.forEach(function(e) {
+			addOrderToPage(e, 'requesting-orders');
+		});
+		getRandomOrder(0, function(order) {
+			addOrderToPage(order, 'requesting-orders');
+		});
+	}
+
+	startRequesting();
+</script>

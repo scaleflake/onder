@@ -3,7 +3,7 @@
 		var respondingToggler = new ModuleToggler('responding');
 	</script>
 	<div class="module-header" onclick="respondingToggler.toggle()">
-		<span>Responding 2.0</span>
+		<span>Responding</span>
 	</div>
 	<div class="module-content">
 		<div class="row">
@@ -12,8 +12,7 @@
 					<div class="block-label" style="overflow: hidden; padding: 0px;">
 						<style type="text/css">
 							div.orders-toggler {
-								/*padding-bottom: 5px;
-								padding-top: 15px;*/
+								margin: 0px 22px;
 							}
 							div.toggler-button {
 								background-color: var(--slider-track);
@@ -27,12 +26,20 @@
 								padding-right: 3.5vw;
 								padding-top: 5px;
 								text-align: center;
+								transition: 0.3s;
 							}
 							div.toggler-button:hover {
 								background-color: var(--main-bg-color);
 							}
 							div.toggler-button.active {
 								background-color: var(--accent-dark);
+							}
+							body[struct=straight] div.toggler-button {
+								border-radius: 0px;
+								max-width: 1000px;
+							}
+							body[struct=rounded] div.toggler-button {
+								
 							}
 						</style>
 						<div class="row orders-toggler">
@@ -41,21 +48,157 @@
 							<div class="col-4"><div class="toggler-button" id="orders-closed">Closed</div></div>
 						</div>
 					</div>
-					<div class="block-settings">soon</div>
+					<div class="block-settings"></div>
 					<div class="block-dragging-button"><img src="./assets/move.svg"></div>
-					<div class="block-settings-toggler"><img src="./assets/settings.svg"></div>
+					<div class="block-settings-toggler" id="responding-version-toggler"><img src="./assets/settings.svg"></div>
 					<div class="block-dragging-hint">Drag blocks to swap them</div>
+					<script>
+						$('#responding-version-toggler').on('click', function() {
+							let e = $('#responding-orders');
+							if (e.hasClass("orders-v1")) {
+								e.toggleClass("orders-v2");
+							} else if (e.hasClass("orders-v2")) {
+								e.toggleClass("orders-v1");
+							}
+						});
+					</script>
 				</div>
 				<div class="block-content">
-					<style type="text/css">
-						div#responding div.scrollmenu, 
-						div#requesting div.scrollmenu{
+					<style>
+						div.scrollmenu {
 							overflow-x: scroll;
 							overflow-y: hidden; 
 							white-space: nowrap;
 						}
-						div#responding div.scrollmenu div.item, 
-						div#requesting div.scrollmenu div.item {
+						/*div.orders-v1 *,
+						div.orders-v2 * {
+							transition: 0.3s;
+						}*/
+					</style>
+					<!-- orders v1 -->
+					<style type="text/css">
+						div.orders-v1 {
+							min-width: calc(1024px - 30px); 
+							height: 100%
+						}
+
+						div.orders-v1 div.header {
+							display: block;
+						}
+						div.orders-v1 div.header > div.watts > div {
+							display: inline-block; 
+							white-space: nowrap; 
+						}
+						div.orders-v1 div.item {
+							cursor: pointer;
+							display: block;
+							font-size: 0px;
+							padding: 15px 10px;
+							text-decoration: none;
+							transition: 0.2s;
+							white-space: normal; 
+
+						}
+						div.orders-v1 div.item:hover {
+							background-color: var(--modules-header-color);
+						}
+
+						div.orders-v1 div.item > div {
+							display: inline-block;
+							font-size: 16px;
+							margin: 0px;
+							padding: 0px;
+							text-align: center;
+						}
+
+						div.orders-v1 div.item > label {
+							display: none;
+						}
+
+						div.orders-v1 div.item div.id {
+							width: 5%;
+						}
+						div.orders-v1 div.item div.time {
+							width: 14.5%;
+						}
+						div.orders-v1 div.item div.time {
+							width: 14.5%;
+						}
+						div.orders-v1 div.item div.duration {
+							width: 14%;
+						}
+						div.orders-v1 div.item div.watts {
+							width: 33%;
+							vertical-align: bottom
+						}
+						div.orders-v1 div.item div.price {
+							width: 15%;
+						} 
+						div.orders-v1 div.item div.state {
+							width: 4%;
+						}
+
+						div.orders-v1 div.my-progress-bar {
+							display: block !important;
+							background-color: var(--accent-light); 
+							border-radius: 50vh;
+							height: 24px;
+							overflow: hidden;
+
+							text-align: left !important;
+							width: 100%;
+						}
+
+						div.orders-v1 div.progress {
+							display: block !important;
+							background-color: var(--accent-dark); 
+							border-radius: 0px; 
+							height: 24px; 
+						}
+						div.orders-v1 div.progress-info {
+							display: block !important;
+							height: 24px;
+							text-align: center;	
+							width: 100%;
+							
+							position: relative;
+							top: -24px;
+						}
+						div.orders-v1 div.progress-info > div.percentage,
+						div.orders-v1 div.progress-info > div.total,
+						div.orders-v1 div.progress-info > div.covered {
+							display: inline-block !important;
+							width: 33%;
+							vertical-align: middle !important;
+						}
+						div.orders-v1 div.progress-info > div.total,
+						div.orders-v1 div.progress-info > div.covered {
+							font-size: 13px !important;
+							padding: 0px 5px;
+						}
+						div.orders-v1 div.progress-info > div.total {
+							text-align: right;
+						}
+						div.orders-v1 div.progress-info > div.covered {
+							text-align: left;
+						}
+
+
+						div.orders-v1 div.item > button.btn {
+							display: none;
+						}
+					</style>
+					<!-- orders v2 -->
+					<style type="text/css">
+						div.orders-v2 {
+							min-width: ; 
+							height: 100%
+						}
+
+						div.orders-v2 div.item.header {
+							display: none;
+						}
+						div.orders-v2 div.item {
 							background-color: var(--orders-bg-color);
 							border-radius: 15px;
 							display: inline-block;
@@ -67,10 +210,10 @@
 							white-space: normal;
 							width: calc(100vw - 30px);
 							margin-bottom: 5px;
+							margin-right: 8px;
 						}
 
-						div#responding div.item > div, 
-						div#requesting div.item > div {
+						div.orders-v2 div.item > div {
 							display: block;
 							font-size: 16px;
 							margin: 0px;
@@ -78,36 +221,38 @@
 							text-align: left;
 							width: 100%;
 						}
-						div#responding div.item > label, 
-						div#requesting div.item > label {
+						div.orders-v2 div.item > label {
+							display: inline-block;
 							opacity: 0.6;
 							font-size: 12px;
 							margin-bottom: 0px;
 						}
-						div#responding div.item > div.id, 
-						div#requesting div.item > div.id {
+						div.orders-v2 div.item div.id,
+						div.orders-v2 div.item div.time,
+						div.orders-v2 div.item div.duration,
+						div.orders-v2 div.item div.watts,
+						div.orders-v2 div.item div.price,
+						div.orders-v2 div.item div.state {
+							width: 100%;
+						}
+						div.orders-v2 div.item > div.id {
 							font-size: 18px;
 						}
 
-
-
-
-						div#responding div.my-progress-bar, 
-						div#requesting div.my-progress-bar {
+						div.orders-v2 div.my-progress-bar {
 							background-color: var(--accent-light); 
 							border-radius: 50vh; 
 							overflow: hidden;
 							height: 24px;
 						}
-						div#responding div.progress, 
-						div#requesting div.progress {
+
+						div.orders-v2 div.progress {
 							background-color: var(--accent-dark); 
 							border-radius: 0px;
 							display: block;
 							height: 24px; 
 						}
-						div#responding div.progress-info, 
-						div#requesting div.progress-info {
+						div.orders-v2 div.progress-info {
 							height: 24px;
 							text-align: center;	
 							width: 100%;
@@ -115,37 +260,31 @@
 							position: relative;
 							top: -24px;
 						}
-						div#responding div.progress-info > div.percentage,
-						div#responding div.progress-info > div.total,
-						div#responding div.progress-info > div.covered,
-						div#requesting div.progress-info > div.percentage,
-						div#requesting div.progress-info > div.total,
-						div#requesting div.progress-info > div.covered {
+
+						div.orders-v2 div.progress-info > div.percentage,
+						div.orders-v2 div.progress-info > div.total,
+						div.orders-v2 div.progress-info > div.covered {
 							display: inline-block !important;
 							width: 33%;
 							vertical-align: middle;
 						}
-						div#responding div.progress-info > div.total,
-						div#responding div.progress-info > div.covered, 
-						div#requesting div.progress-info > div.total,
-						div#requesting div.progress-info > div.covered {
+						div.orders-v2 div.progress-info > div.total,
+						div.orders-v2 div.progress-info > div.covered {
 							font-size: 13px !important;
 							padding: 0px 5px;
 						}
-						div#responding div.progress-info > div.total,
-						div#requesting div.progress-info > div.total {
+						div.orders-v2 div.progress-info > div.total {
 							text-align: right;
 						}
-						div#responding div.progress-info > div.covered,
-						div#requesting div.progress-info > div.covered {
+						div.orders-v2 div.progress-info > div.covered {
 							text-align: left;
 						}
 
-						div#responding div.item > button.btn,
-						div#requesting div.item > button.btn {
+						div.orders-v2 div.item > button.btn {
 							width: 100%;
 							height: 35px;
 							color: var(--main-font-color);
+							display: block;
 						}
 						body[theme=light] div.item > button.btn {
 							background-color: var(--accent-dark);
@@ -157,12 +296,29 @@
 							background-color: var(--modules-bg-color);
 						}
 					</style>		
-					<div class="row" style="padding-bottom: 10px;">
-						<div class="col-12">	
-							<div class="scrollmenu" id="responding-orders"></div>
-							<script type="text/javascript">
-								horizontalScroll('responding-orders');
-							</script>
+					<div class="row">
+						<div class="col-12">
+							<div class="scrollmenu">
+								<div class="orders-v1" id="responding-orders">
+									<div class="item header">
+										<div class="id">Id</div>
+										<div class="time">Beginning</div>
+										<div class="time">Ending</div>
+										<div class="duration">Duration</div>
+										<div class="watts">
+											<div style="width: 10%;"></div><!-- 
+										 --><div style="width: 40%; text-align: left">Watts covered</div><!-- 
+										 --><div style="width: 40%; text-align: right;">Watts required</div><!-- 
+										 --><div style="width: 10%;"></div>
+										</div>
+										<div class="price">Unit price</div>
+										<div class="state">State</div>
+									</div>
+								</div>
+								<script type="text/javascript">
+									horizontalScroll('responding-orders');
+								</script>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -217,6 +373,9 @@
 		console.log('Responding!');
 		predefined.forEach(function(e) {
 			addOrderToPage(e, 'responding-orders');
+		});
+		getRandomOrder(0, function(order) {
+			addOrderToPage(order, 'responding-orders');
 		});
 		getRandomOrder(0, function(order) {
 			addOrderToPage(order, 'responding-orders');

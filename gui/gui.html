@@ -18,7 +18,7 @@
 		<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.6.1/Sortable.min.js" crossorigin="anonymous"></script>
 
-		<link rel="icon" type="image/png" href="./favicon.png" />
+		<link rel="icon" type="image/png" href="./assets/favicon.png" />
 
 		<link rel="stylesheet" type="text/css" href="./css/module.css">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css">
@@ -156,94 +156,42 @@
 		</div>
 
 		<div id="navbar-placeholder"></div>
-
-		<style type="text/css">
-			div#content {
-				margin-top: -5px;
-				padding-top: 5px;
-				width: 100%;
-				overflow: hidden;
-				max-width: 1440px;
-				margin: 0 auto;
-				vertical-align: top;
-			}
-			div#sidebar {
-				margin-top: -25px;
-				display: inline-block;
-				position: absolute;
-				width: 240px;
-				background-color: var(--modules-bg-color);
-				height: 100%;
-				z-index: 2;
-				padding-left: 10px;
-				padding-right: : 10px;
-				display: none;
-			}
-			div#pages {
-				display: inline-block;
-				white-space: nowrap;
-				width: 100%;
-			}
-			div#pages-slider {
-				display: inline-block; 
-				transition: 0.3s;
-			}
-			div.page {
-				display: inline-block;
-				overflow: hidden;
-				padding-left: 10px;
-				padding-right: 10px;
-				transition: 0.3s;
-				vertical-align: top;
-				width: 100%; 
-			}
-			body[struct=straight] div.page {
-				padding-left: 0px;
-				padding-right: 0px;
-			}
-
-			ul.modules {
-				list-style-type: none;
-				padding-left: 0;
-			}
-			li.module-placeholder {
-				display: block;
-				vertical-align: top;
-			}
-		</style>
-		<div id="content">
-			<div id="sidebar">
-				soon
-			</div><!-- 
-
-		 --><div id="pages">
-				<div id="pages-slider"></div><!-- 
-
-			 --><div class="page">
-					<ul class="modules" id="modules-main">
-						<li class="module-placeholder" id="requesting-placeholder"></li>
-						<li class="module-placeholder" id="responding-placeholder"></li>
-						<li class="module-placeholder" id="responding-alt-placeholder"></li>
-					</ul>
+		
+		<div id="content-wrapper">
+			<div id="content">
+				<div id="sidebar">
+					soon
 				</div><!-- 
 
-			 --><div class="page">
-			 		<ul class="modules" id="modules-market">
-			 			<li class="module-placeholder" id="market-placeholder"></li>
-					</ul>
-				</div><!-- 
+			 --><div id="pages">
+					<div id="pages-slider"></div><!-- 
 
-			 --><div class="page">
-			 		<ul class="modules" id="modules-info">
-			 			<li class="module-placeholder" id="monitoring-placeholder"></li>
-						<li class="module-placeholder" id="statistics-placeholder"></li>
-					</ul>
-				</div><!-- 
+				 --><div class="page">
+						<ul class="modules" id="modules-main">
+							<li class="module-placeholder" id="requesting-placeholder"></li>
+							<li class="module-placeholder" id="responding-placeholder"></li>
+						</ul>
+					</div><!-- 
 
-			 --><div class="page">
-				 	<ul class="modules" id="modules-dev">
-				 		<li class="module-placeholder" id="compact-placeholder"></li>
-					</ul>
+				 --><div class="page">
+				 		<ul class="modules" id="modules-market">
+				 			<li class="module-placeholder" id="market-placeholder"></li>
+						</ul>
+					</div><!-- 
+
+				 --><div class="page">
+				 		<ul class="modules" id="modules-info">
+				 			<li class="module-placeholder" id="monitoring-placeholder"></li>
+							<li class="module-placeholder" id="statistics-placeholder"></li>
+						</ul>
+						<div ></div>
+					</div><!-- 
+
+				 --><div class="page">
+					 	<ul class="modules" id="modules-dev">
+					 		<li class="module-placeholder" id="compact-placeholder"></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -258,7 +206,6 @@
 				// main
 				$("#requesting-placeholder").load("./modules/requesting.html");
 				$("#responding-placeholder").load("./modules/responding.html");
-				$("#responding-alt-placeholder").load("./modules/responding-alt.html");
 				Sortable.create(document.getElementById("modules-main"), { handle: '.module-header' });
 
 				// market

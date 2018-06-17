@@ -13,11 +13,28 @@
 						SettingsToggler('block-header-history', 'History');
 					</script>
 				</div>
-				<div class="block-content" style="height: calc(100% - 57px)">
-					<div class="scrollmenu" id="requesting-orders"></div>
-					<script type="text/javascript">
-						horizontalScroll('requesting-orders');
-					</script>
+				<div class="block-content">
+					<div class="scrollmenu">
+						<div class="orders-v2" id="requesting-orders">
+							<div class="item header">
+								<div class="id">Id</div>
+								<div class="time">Beginning</div>
+								<div class="time">Ending</div>
+								<div class="duration">Duration</div>
+								<div class="watts">
+									<div style="display: inline-block; white-space: nowrap; width: 10%;"></div><!-- 
+								 --><div style="display: inline-block; white-space: nowrap; width: 40%; text-align: left">Watts covered</div><!-- 
+								 --><div style="display: inline-block; white-space: nowrap; width: 40%; text-align: right;">Watts required</div><!-- 
+								 --><div style="display: inline-block; white-space: nowrap; width: 10%;"></div>
+								</div>
+								<div class="price">Unit price</div>
+								<div class="state">State</div>
+							</div>
+						</div>
+						<script type="text/javascript">
+							horizontalScroll('requesting-orders');
+						</script>
+					</div>
 				</div>
 			</li>
 			<li class="col-md-4 light" id="create-order">
@@ -35,7 +52,8 @@
 							margin: -10px; 
 							padding: 10px; 
 						}
-						div#create-order-input,div#create-order-confirmation {
+						div#create-order-input,
+						div#create-order-confirmation {
 							display: inline-block !important; 
 							width: 100%;
 							min-height: 100%;
@@ -116,7 +134,7 @@
 							</div>
 							<div class="form-group">
 								<label>Flat price: </label>
-								<input class="form-control" id='price'  type="number" placeholder="10">
+								<input class="form-control" id='price' type="number" placeholder="10">
 							</div>
 							<div style="margin-top: 49px;">
 								<button id="request-button" class="btn">Create order</button>
@@ -126,7 +144,7 @@
 					 --><div id="create-order-confirmation">
 					 		<div class="form-group">
 								<label>Account: </label>
-								<div>0x0000000000000000000000000000000000000000</div> <!-- style="font-size: 1.2vw;" -->
+								<div>0x0000000000000000000000000000000000000000</div>
 							</div>
 							<div class="form-group">
 								<label>Beginning: </label>
@@ -205,7 +223,7 @@
 		total: 130,
 		covered: 82,
 		price: 180,
-		state: 0
+		state: 'open'
 	}, {
 		id: 221,
 		beginning: 1527004800,
@@ -213,13 +231,16 @@
 		total: 100,
 		covered: 56,
 		price: 180,
-		state: 0
+		state: 'open'
 	}];
 
 	function startRequesting() {
 		console.log('Requesting!');
 		historyOrders.forEach(function(e) {
 			addOrderToPage(e, 'requesting-orders');
+		});
+		getRandomOrder(0, function(order) {
+			addOrderToPage(order, 'requesting-orders');
 		});
 		getRandomOrder(0, function(order) {
 			addOrderToPage(order, 'requesting-orders');
